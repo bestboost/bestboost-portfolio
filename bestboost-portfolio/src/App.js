@@ -1,4 +1,12 @@
 import React from 'react';
+// import Navbar from './components/Navbar';
+// import About from './components/About';
+// import Projects from './components/Projects';
+// import Resume from './components/Resume';
+// import Contacts from './components/Contacts';
+// import Certificates from './components/Certificates';
+// import Testimonials from './components/Testimonials';
+// import Footer from './components/Footer';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -27,7 +35,16 @@ const App = () => (
   <Wrapper>
     <Title>BestBoost</Title>
     <Tagline>Transform Reality</Tagline>
-  </Wrapper>
+    {/* <Navbar />
+    <About />
+    <Projects />
+    <Resume />
+    <Contacts />
+    <Certificates />
+    <Testimonials />
+    <Footer /> */}
+    </Wrapper>
+
 );
 
 export default App;
