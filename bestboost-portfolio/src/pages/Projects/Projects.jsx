@@ -1,7 +1,9 @@
 import React from 'react';
+import Testimonials from '../../components/Testimonials.jsx'
 
 const Projects = () => {
   return (
+    <>
     <section id="projects">
       <h2>Projects</h2>
       <div>
@@ -11,6 +13,8 @@ const Projects = () => {
       </div>
       {/* Додайте інші проєкти тут */}
     </section>
+    <Testimonials />
+    </>
   );
 };
 
