@@ -14,9 +14,9 @@ export const CertificatesTitle = styled.h2`
 
 export const CertificatesContainer = styled.div`
   display: flex;
-  flex-wrap: wrap; /* Дозволяє переходити на новий рядок */
-  justify-content: center; /* Центрує сертифікати */
-  gap: 20px; /* Відстань між сертифікатами */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 `;
 
 export const CertificateItem = styled.div`
@@ -27,8 +27,8 @@ export const CertificateItem = styled.div`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary};
-    color: white; /* Змінюємо колір тексту при наведені */
+    background-color: ${({ theme }) => theme.colors.hover};
+    color: white;
   }
 `;
 
@@ -46,6 +46,6 @@ export const DownloadLink = styled.a`
   text-decoration: none;
 
   &:hover {
-    text-decoration: underline; /* Підкреслення при наведені */
+    text-decoration: underline;
   }
 `;

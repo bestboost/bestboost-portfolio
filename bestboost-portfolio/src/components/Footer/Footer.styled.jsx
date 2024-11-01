@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FooterContainer = styled.footer`
-  background-color: ${({ theme }) => theme.colors.primary};
+  background: linear-gradient(to right, #555555, #ff6f61, #ffd700);
   color: white;
   text-align: center;
   padding: 20px 0;

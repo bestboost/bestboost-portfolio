@@ -5,5 +5,5 @@ export const HeaderWrapper = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: ${({ theme }) => theme.spacing(2)};
-  background-color: ${({ theme }) => theme.colors.primary};
+  background: linear-gradient(to right, #555555, #666666, #ff6f61, #ffc107);
 `;

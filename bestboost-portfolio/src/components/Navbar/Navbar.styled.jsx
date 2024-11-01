@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 export const NavbarWrapper = styled.nav`
   display: flex;
-  background-color: ${({ theme }) => theme.colors.primary};
   padding: ${({ theme }) => theme.spacing(2)};
 `;
 
@@ -20,14 +19,14 @@ export const NavItem = styled.li``;
 export const NavLink = styled(Link)`
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.main};
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   text-decoration: none;
   padding: ${({ theme }) => theme.spacing(1)} ${({ theme }) => theme.spacing(2)};
   border-radius: 5px;
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary};
+    background-color: ${({ theme }) => theme.colors.hover};
     color: white;
   }
 `;
