@@ -14,11 +14,13 @@ export const Title = styled.h2`
 `;
 
 export const Contact = styled.p`
+  padding: ${({ theme }) => theme.spacing(2)};
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.main};
   font-size: 1.1rem;
   line-height: 1.5;
-  margin: 0 auto;
+  text-align: start;
+  margin: 0;
   max-width: 600px;
 `;
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { FaEnvelope, FaGithub, FaLinkedin, FaTelegram } from "react-icons/fa";
 import {
   ContactsSection,
   Title,
@@ -10,14 +11,36 @@ const Contacts = () => {
   return (
     <ContactsSection id="contacts">
       <Title>Contacts</Title>
-      <Contact>Email: your_email@example.com</Contact>
+      <Contact>
+        <ContactLink href="mailto:1bestboost@gmail.com">
+          <FaEnvelope /> 1bestboost@gmail.com
+        </ContactLink>
+      </Contact>
       <Contact>
         <ContactLink
-          href="https://github.com/ваш_репозиторій"
+          href="https://github.com/bestboost"
           target="_blank"
           rel="noopener noreferrer"
         >
-          GitHub
+          <FaGithub /> GitHub
+        </ContactLink>
+      </Contact>
+      <Contact>
+        <ContactLink
+          href="https://linkedin.com/in/darya-hudzovska/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaLinkedin /> LinkedIn
+        </ContactLink>
+      </Contact>
+      <Contact>
+        <ContactLink
+          href="https://t.me/DaryaHudzovska"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaTelegram /> Telegram
         </ContactLink>
       </Contact>
     </ContactsSection>
