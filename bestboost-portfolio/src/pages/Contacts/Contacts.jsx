@@ -1,5 +1,6 @@
 import React from "react";
 import { FaEnvelope, FaGithub, FaLinkedin, FaTelegram } from "react-icons/fa";
+import FeedbackForm from "../../components/FeedbackForm/FeedbackForm";
 import {
   ContactsSection,
   Title,
@@ -43,6 +44,7 @@ const Contacts = () => {
           <FaTelegram /> Telegram
         </ContactLink>
       </Contact>
+      <FeedbackForm />
     </ContactsSection>
   );
 };

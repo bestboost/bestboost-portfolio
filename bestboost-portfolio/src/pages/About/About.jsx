@@ -1,5 +1,6 @@
 import React from "react";
 import Certificates from "../../components/Certificates/Certificates";
+// import text from "../../locales/texts";
 import { AboutSection, Title, Description } from "./About.styled";
 
 const About = () => {

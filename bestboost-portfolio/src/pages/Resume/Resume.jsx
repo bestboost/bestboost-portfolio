@@ -1,27 +1,41 @@
 import React from "react";
 import { FaFilePdf } from "react-icons/fa";
+import Button from "../../components/Button/Button";
+import text from "../../locales/texts";
 import {
   ResumeSection,
   Title,
-  // SecondaryTitle,
-  DownloadBtn,
+  SecondaryTitle,
   Description,
 } from "./Resume.styled";
 
 const Resume = () => {
+  const sections = [
+    "summary",
+    "techSkills",
+    "softSkills",
+    "education",
+    "projectExperience",
+    "workExperience",
+    "languages",
+  ];
   return (
     <ResumeSection id="resume">
       <Title>Resume</Title>
-      <Description>
-        Here’s an overview of my skills and experience. You can also download my
-        full resume as a PDF. Lorem ipsum dolor sit amet, consectetur
-        adipisicing elit. Omnis asperiores facilis doloremque ullam rerum
-        reiciendis, nesciunt repellat quasi, aspernatur architecto doloribus
-        harum, temporibus aut non hic in iusto animi est!
-      </Description>
-      <DownloadBtn href="/resume.pdf" download="CV.pdf">
+      <SecondaryTitle>{text.professin}</SecondaryTitle>
+      {sections.map((section, index) => (
+        <Description key={index}>
+          {section.replace(/([a-z])([A-Z])/g, "$1 $2").toUpperCase()}:{" "}
+          {text[section]}
+        </Description>
+      ))}
+      <Button
+        href="https://drive.google.com/uc?export=download&id=1Z8NxsCSvzEeMn96olngL48F9WBDosTyA"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <FaFilePdf style={{ marginRight: "8px" }} /> Download Resume
-      </DownloadBtn>
+      </Button>
     </ResumeSection>
   );
 };

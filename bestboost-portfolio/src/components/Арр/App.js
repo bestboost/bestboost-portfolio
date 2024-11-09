@@ -7,13 +7,12 @@ import Projects from "../../pages/Projects/Projects";
 import Resume from "../../pages/Resume/Resume";
 import Contacts from "../../pages/Contacts/Contacts";
 import Footer from "../Footer/Footer";
-import { Container } from "./App.styled";
 
 const App = () => {
   const location = useLocation();
 
   return (
-    <Container>
+    <>
       {location.pathname !== "/" && <Header />}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -23,7 +22,7 @@ const App = () => {
         <Route path="/contacts" element={<Contacts />} />
       </Routes>
       {location.pathname !== "/" && <Footer />}
-    </Container>
+    </>
   );
 };
 export default App;
