@@ -20,7 +20,6 @@ export const CertificatesContainer = styled.div`
 `;
 
 export const CertificateItem = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing(3)};
   padding: ${({ theme }) => theme.spacing(2)};
   border: 1px solid ${({ theme }) => theme.colors.secondary};
   border-radius: 8px;
@@ -38,10 +37,12 @@ export const CertificateTitle = styled.h3`
 `;
 
 export const CertificateDescription = styled.p`
+  padding: ${({ theme }) => theme.spacing(2)};
   color: ${({ theme }) => theme.colors.text};
 `;
 
 export const DownloadLink = styled.a`
+  padding: ${({ theme }) => theme.spacing(2)};
   color: ${({ theme }) => theme.colors.link};
   text-decoration: none;
 

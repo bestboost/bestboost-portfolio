@@ -30,9 +30,10 @@ const Resume = () => {
         </Description>
       ))}
       <Button
-        href="https://drive.google.com/uc?export=download&id=1Z8NxsCSvzEeMn96olngL48F9WBDosTyA"
-        target="_blank"
-        rel="noopener noreferrer"
+        onClick={() => {
+          window.location.href =
+            "https://drive.google.com/uc?export=download&id=1Z8NxsCSvzEeMn96olngL48F9WBDosTyA";
+        }}
       >
         <FaFilePdf style={{ marginRight: "8px" }} /> Download Resume
       </Button>
