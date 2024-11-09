@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const AboutSection = styled.section`
+export const AboutSection = styled.main`
+  flex: 1;
   padding: ${({ theme }) => theme.spacing(4)};
   background-color: ${({ theme }) => theme.colors.background};
   text-align: center;
-  height: 100vh;
 `;
 
 export const Title = styled.h2`

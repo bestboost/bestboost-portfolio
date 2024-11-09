@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const ContactsSection = styled.main`
+  flex: 1;
   padding: ${({ theme }) => theme.spacing(4)};
+  background-color: ${({ theme }) => theme.colors.background};
   text-align: center;
 `;
 
