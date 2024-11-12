@@ -23,12 +23,6 @@ const Resume = () => {
     <ResumeSection id="resume">
       <Title>Resume</Title>
       <SecondaryTitle>{text.professin}</SecondaryTitle>
-      {sections.map((section, index) => (
-        <Description key={index}>
-          {section.replace(/([a-z])([A-Z])/g, "$1 $2").toUpperCase()}:{" "}
-          {text[section]}
-        </Description>
-      ))}
       <Button
         onClick={() => {
           window.location.href =
@@ -37,6 +31,12 @@ const Resume = () => {
       >
         <FaFilePdf style={{ marginRight: "8px" }} /> Download Resume
       </Button>
+      {sections.map((section, index) => (
+        <Description key={index}>
+          {section.replace(/([a-z])([A-Z])/g, "$1 $2").toUpperCase()}:{" "}
+          {text[section]}
+        </Description>
+      ))}
     </ResumeSection>
   );
 };
