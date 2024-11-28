@@ -19,18 +19,16 @@ export const SecondaryTitle = styled.h3`
 `;
 
 export const TestimonialsCard = styled.div`
-  background-color: #f4f4f4;
+  background-color: ${({ theme }) => theme.colors.secondBackground};
   padding: 20px;
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
 export const TestimonialsPhoto = styled.img`
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  margin-bottom: 10px;
   object-fit: cover;
 `;
 
@@ -39,6 +37,5 @@ export const Description = styled.p`
   font-family: ${({ theme }) => theme.fonts.main};
   font-size: 1.1rem;
   line-height: 1.5;
-  margin: 0 auto;
-  max-width: 600px;
+  margin: 0;
 `;

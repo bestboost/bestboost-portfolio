@@ -2,9 +2,18 @@ import styled from "styled-components";
 
 export const ResumeSection = styled.main`
   flex: 1;
-  padding: ${({ theme }) => theme.spacing(4)};
+  padding: 32px 160px;
   background-color: ${({ theme }) => theme.colors.background};
   text-align: center;
+`;
+
+export const BackgroundCard = styled.div`
+  display: inline-block;
+  background-color: ${({ theme }) => theme.colors.secondBackground};
+  padding: 40px 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: ${({ theme }) => theme.shadows.default};
 `;
 
 export const Title = styled.h2`
@@ -25,9 +34,8 @@ export const Description = styled.p`
   font-size: 1.1rem;
   text-align: start;
   line-height: 1.5;
-  margin: 0 auto;
+  margin: 0;
   padding: ${({ theme }) => theme.spacing(2)};
-  max-width: 600px;
 `;
 
 // export const ProjectLink = styled.a`

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ProjectsSection = styled.main`
   flex: 1;
-  padding: ${({ theme }) => theme.spacing(4)};
+  padding: 32px 160px;
   background-color: ${({ theme }) => theme.colors.background};
   text-align: center;
 `;
@@ -26,11 +26,14 @@ export const ProjectsContainer = styled.div`
 `;
 
 export const ProjectCard = styled.div`
-  background-color: #f4f4f4;
+  background-color: ${({ theme }) => theme.colors.secondBackground};
   padding: 20px;
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: ${({ theme }) => theme.shadows.default};
+  &:hover {
+    box-shadow: ${({ theme }) => theme.shadows.hover};
+  }
 `;
 
 export const ProjectImg = styled.img`

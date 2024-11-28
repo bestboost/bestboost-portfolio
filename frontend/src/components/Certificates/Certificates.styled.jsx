@@ -21,6 +21,7 @@ export const CertificatesContainer = styled.div`
 
 export const CertificateItem = styled.div`
   padding: ${({ theme }) => theme.spacing(2)};
+  background-color: ${({ theme }) => theme.colors.secondBackground};
   border: 1px solid ${({ theme }) => theme.colors.secondary};
   border-radius: 8px;
   transition: background-color 0.3s;

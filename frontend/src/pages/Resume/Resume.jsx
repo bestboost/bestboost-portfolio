@@ -6,6 +6,7 @@ import {
   ResumeSection,
   Title,
   SecondaryTitle,
+  BackgroundCard,
   Description,
 } from "./Resume.styled";
 
@@ -22,21 +23,23 @@ const Resume = () => {
   return (
     <ResumeSection id="resume">
       <Title>Resume</Title>
-      <SecondaryTitle>{text.professin}</SecondaryTitle>
-      <Button
-        onClick={() => {
-          window.location.href =
-            "https://drive.google.com/uc?export=download&id=1Z8NxsCSvzEeMn96olngL48F9WBDosTyA";
-        }}
-      >
-        <FaFilePdf style={{ marginRight: "8px" }} /> Download Resume
-      </Button>
-      {sections.map((section, index) => (
-        <Description key={index}>
-          {section.replace(/([a-z])([A-Z])/g, "$1 $2").toUpperCase()}:{" "}
-          {text[section]}
-        </Description>
-      ))}
+      <BackgroundCard>
+        <SecondaryTitle>{text.professin}</SecondaryTitle>
+        <Button
+          onClick={() => {
+            window.location.href =
+              "https://drive.google.com/uc?export=download&id=1Z8NxsCSvzEeMn96olngL48F9WBDosTyA";
+          }}
+        >
+          <FaFilePdf style={{ marginRight: "8px" }} /> Download Resume
+        </Button>
+        {sections.map((section, index) => (
+          <Description key={index}>
+            {section.replace(/([a-z])([A-Z])/g, "$1 $2").toUpperCase()}:{" "}
+            {text[section]}
+          </Description>
+        ))}
+      </BackgroundCard>
     </ResumeSection>
   );
 };
