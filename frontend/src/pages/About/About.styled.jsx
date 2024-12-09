@@ -22,10 +22,26 @@ export const BackgroundCard = styled.div`
   box-shadow: ${({ theme }) => theme.shadows.default};
 `;
 
+export const AboutContainer = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+`;
+
+export const Photo = styled.img`
+  float: left;
+  width: 33%;
+  height: auto;
+  margin: 0 20px 20px 0;
+  border-radius: 8px;
+  box-shadow: ${({ theme }) => theme.shadows.default};
+`;
+
 export const Description = styled.p`
+  margin: 0;
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.main};
   font-size: 1.1rem;
   line-height: 1.5;
-  margin: 0;
+  text-align: justify;
 `;

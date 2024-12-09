@@ -7,7 +7,8 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterText>
-        &copy; {currentYear} Ваше ім'я. Всі права захищені.
+        &copy; {currentYear} BestBoost від Дар'ї Гудзовської. Всі права
+        захищені.
       </FooterText>
     </FooterContainer>
   );
