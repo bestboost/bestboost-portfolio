@@ -3,7 +3,7 @@ import { LogoStyle } from "./Logo.styled";
 
 const Logo = () => {
   return (
-    <LogoStyle>LOGO</LogoStyle>
+    <LogoStyle>BestBoost</LogoStyle>
     // <svg></svg>
   );
 };

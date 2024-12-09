@@ -49,5 +49,7 @@ export const DownloadLink = styled.a`
 
   &:hover {
     text-decoration: underline;
+    color: ${({ theme }) => theme.colors.primary};
+    text-shadow: 0px 0px 8px ${({ theme }) => theme.colors.secondary};
   }
 `;
