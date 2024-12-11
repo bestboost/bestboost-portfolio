@@ -9,7 +9,8 @@ export const FormSection = styled.section`
 `;
 
 export const FormTitle = styled.h2`
-  font-size: 2em;
+  padding: 10px;
+  font-size: 1.5em;
   color: #2f2f2f;
 `;
 

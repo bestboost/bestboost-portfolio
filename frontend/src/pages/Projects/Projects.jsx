@@ -1,6 +1,6 @@
 import React from "react";
 import projectsData from "../../data/projects";
-import Testimonials from "../../components/Testimonials/Testimonials.jsx";
+// import Testimonials from "../../components/Testimonials/Testimonials.jsx";
 import {
   ProjectsSection,
   ProjectsContainer,
@@ -49,7 +49,7 @@ const Projects = () => {
           ))}
         </ProjectsContainer>
       </ProjectsSection>
-      <Testimonials />
+      {/* <Testimonials /> */}
     </>
   );
 };

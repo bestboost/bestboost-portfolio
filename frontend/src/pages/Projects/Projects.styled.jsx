@@ -5,6 +5,14 @@ export const ProjectsSection = styled.main`
   padding: 32px 160px;
   background-color: ${({ theme }) => theme.colors.background};
   text-align: center;
+
+  @media (max-width: 1024px) {
+    padding: 32px 80px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 32px 20px;
+  }
 `;
 
 export const Title = styled.h2`
@@ -23,6 +31,14 @@ export const ProjectsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(300px, 1fr));
   gap: 20px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, minmax(200px, 1fr));
+  }
 `;
 
 export const ProjectCard = styled.div`
@@ -31,6 +47,7 @@ export const ProjectCard = styled.div`
   border-radius: 8px;
   text-align: center;
   box-shadow: ${({ theme }) => theme.shadows.default};
+
   &:hover {
     box-shadow: ${({ theme }) => theme.shadows.hover};
   }
