@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-import Feedback from "./models/feedback.js";
+import feedbackRoutes from "./routes/feedbackRoutes.js";
 
 // Завантаження змінних середовища
 dotenv.config();
@@ -34,21 +34,7 @@ const connectDB = async () => {
 connectDB();
 
 // Route for feedback
-app.post("/feedback", async (req, res) => {
-  const { name, email, message } = req.body;
-
-  if (!name || !email || !message) {
-    return res.status(400).json({ error: "All fields are required" });
-  }
-
-  try {
-    const newMessage = new Feedback({ name, email, message });
-    await newMessage.save();
-    res.status(201).json({ message: "Повідомлення збережено успішно" });
-  } catch (error) {
-    res.status(500).json({ error: "Щось пішло не так" });
-  }
-});
+app.use("/api", feedbackRoutes);
 
 // Базовий маршрут
 app.get("/", (req, res) => {
