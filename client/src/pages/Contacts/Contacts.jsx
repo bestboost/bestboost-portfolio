@@ -1,5 +1,5 @@
 import React from "react";
-import { FaEnvelope, FaGithub, FaLinkedin, FaTelegram } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTelegram } from "react-icons/fa";
 import FeedbackForm from "../../components/FeedbackForm/FeedbackForm";
 import {
   ContactsSection,
@@ -12,11 +12,6 @@ const Contacts = () => {
   return (
     <ContactsSection id="contacts">
       <Title>Contacts</Title>
-      <Contact>
-        <ContactLink href="mailto:1bestboost@gmail.com">
-          <FaEnvelope /> 1bestboost@gmail.com
-        </ContactLink>
-      </Contact>
       <Contact>
         <ContactLink
           href="https://github.com/bestboost"

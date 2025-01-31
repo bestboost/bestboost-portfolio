@@ -57,7 +57,7 @@ const FeedbackForm = () => {
 
   return (
     <FormSection id="contact">
-      <FormTitle>Contact Us</FormTitle>
+      <FormTitle>Contact Me</FormTitle>
       <Form onSubmit={handleSubmit}>
         <Input
           type="text"
