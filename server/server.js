@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import feedbackRoutes from "./routes/feedbackRoutes.js";
+import resumeRoutes from "./routes/resumeRoutes.js";
 
 // Завантаження змінних середовища
 dotenv.config();
@@ -33,8 +34,9 @@ const connectDB = async () => {
 
 connectDB();
 
-// Route for feedback
+// Route
 app.use("/api", feedbackRoutes);
+app.use("/api/resume", resumeRoutes);
 
 // Базовий маршрут
 app.get("/", (req, res) => {

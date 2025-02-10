@@ -1,6 +1,5 @@
 import React from "react";
-import { FaFilePdf } from "react-icons/fa";
-import Button from "../../components/Button/Button";
+import ResumeDownload from "../../components/ResumeDownload";
 import text from "../../locales/texts";
 import {
   ResumeSection,
@@ -25,14 +24,7 @@ const Resume = () => {
       <Title>Resume</Title>
       <BackgroundCard>
         <SecondaryTitle>{text.professin}</SecondaryTitle>
-        <Button
-          onClick={() => {
-            window.location.href =
-              "https://drive.google.com/uc?export=download&id=1Z8NxsCSvzEeMn96olngL48F9WBDosTyA";
-          }}
-        >
-          <FaFilePdf style={{ marginRight: "8px" }} /> Download Resume
-        </Button>
+        <ResumeDownload />
         {sections.map((section, index) => (
           <Description key={index}>
             {section.replace(/([a-z])([A-Z])/g, "$1 $2").toUpperCase()}:{" "}
