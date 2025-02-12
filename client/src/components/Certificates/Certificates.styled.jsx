@@ -1,55 +1,80 @@
 import styled from "styled-components";
 
-export const CertificatesSection = styled.section`
-  padding: ${({ theme }) => theme.spacing(4)};
-  background-color: ${({ theme }) => theme.colors.background};
-  text-align: center;
-`;
-
 export const CertificatesTitle = styled.h2`
-  color: ${({ theme }) => theme.colors.primary};
-  font-family: ${({ theme }) => theme.fonts.heading};
-  margin-bottom: ${({ theme }) => theme.spacing(3)};
+  font-size: 2rem;
+  margin-bottom: 1rem;
 `;
 
 export const CertificatesContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  // flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
 `;
 
 export const CertificateItem = styled.div`
-  padding: ${({ theme }) => theme.spacing(2)};
-  background-color: ${({ theme }) => theme.colors.secondBackground};
-  border: 1px solid ${({ theme }) => theme.colors.secondary};
+  width: 200px;
+  padding: 1rem;
   border-radius: 8px;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.hover};
-    color: white;
-  }
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
 `;
 
 export const CertificateTitle = styled.h3`
-  color: ${({ theme }) => theme.colors.primary};
-  margin: 0;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+`;
+
+export const CertificateImage = styled.img`
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 5px;
 `;
 
 export const CertificateDescription = styled.p`
-  padding: ${({ theme }) => theme.spacing(2)};
-  color: ${({ theme }) => theme.colors.text};
+  font-size: 1rem;
+  color: #666;
 `;
 
 export const DownloadLink = styled.a`
-  padding: ${({ theme }) => theme.spacing(2)};
-  color: ${({ theme }) => theme.colors.link};
+  display: block;
+  margin-top: 0.5rem;
+  color: #007bff;
   text-decoration: none;
-
   &:hover {
     text-decoration: underline;
-    color: ${({ theme }) => theme.colors.primary};
-    text-shadow: 0px 0px 8px ${({ theme }) => theme.colors.secondary};
   }
+`;
+
+// ======= СТИЛІ ДЛЯ МОДАЛЬНОГО ВІКНА =======
+export const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ModalContent = styled.div`
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 80%;
+`;
+
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 `;

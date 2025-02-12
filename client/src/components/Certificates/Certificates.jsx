@@ -1,31 +1,85 @@
-import React from "react";
-import certificates from "../../data/certificates"; // Імпортуємо дані сертифікатів
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
-  CertificatesSection,
   CertificatesTitle,
   CertificatesContainer,
   CertificateItem,
   CertificateTitle,
-  CertificateDescription,
   DownloadLink,
+  CertificateImage,
+  ModalOverlay,
+  ModalContent,
+  CloseButton,
 } from "./Certificates.styled";
 
 const Certificates = () => {
+  const [certificates, setCertificates] = useState([]);
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
+
+  useEffect(() => {
+    fetchCertificates();
+  }, []);
+
+  const fetchCertificates = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/certificates/list"
+      );
+      setCertificates(response.data);
+    } catch (error) {
+      console.error("Помилка при отриманні сертифікатів:", error);
+    }
+  };
+
   return (
-    <CertificatesSection id="certificates">
+    <>
       <CertificatesTitle>Certificates</CertificatesTitle>
       <CertificatesContainer>
         {certificates.map((cert) => (
-          <CertificateItem key={cert.id}>
-            <CertificateTitle>{cert.title}</CertificateTitle>
-            <CertificateDescription>{cert.description}</CertificateDescription>
-            <DownloadLink href={cert.link} download>
-              Download Certificate
+          <CertificateItem key={cert._id}>
+            <CertificateImage
+              src={
+                cert.contentType.startsWith("image")
+                  ? `http://localhost:5000/api/certificates/download/${cert._id}`
+                  : "/pdf-placeholder.png"
+              }
+              alt="Сертифікат"
+              onClick={() => setSelectedCertificate(cert)}
+            />
+            <CertificateTitle>{cert.filename}</CertificateTitle>
+            <DownloadLink
+              href={`http://localhost:5000/api/certificates/download/${cert._id}`}
+              download
+            >
+              Download
             </DownloadLink>
           </CertificateItem>
         ))}
       </CertificatesContainer>
-    </CertificatesSection>
+
+      {selectedCertificate && (
+        <ModalOverlay onClick={() => setSelectedCertificate(null)}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
+            <CloseButton onClick={() => setSelectedCertificate(null)}>
+              ✖
+            </CloseButton>
+            {selectedCertificate.contentType.startsWith("image") ? (
+              <img
+                src={`http://localhost:5000/api/certificates/download/${selectedCertificate._id}`}
+                alt="Сертифікат"
+                style={{ width: "100%" }}
+              />
+            ) : (
+              <iframe
+                src={`http://localhost:5000/api/certificates/download/${selectedCertificate._id}`}
+                width="100%"
+                height="500px"
+              />
+            )}
+          </ModalContent>
+        </ModalOverlay>
+      )}
+    </>
   );
 };
 

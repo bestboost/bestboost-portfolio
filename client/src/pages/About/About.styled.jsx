@@ -38,7 +38,7 @@ export const Photo = styled.img`
 `;
 
 export const Description = styled.p`
-  margin: 0;
+  margin-bottom: ${({ theme }) => theme.spacing(4)};
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.main};
   font-size: 1.1rem;

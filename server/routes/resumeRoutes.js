@@ -11,16 +11,16 @@ const router = express.Router();
 // Використовуємо готове підключення mongoose
 const db = mongoose.connection;
 
-// Налаштування GridFS Storage
-const storage = new GridFsStorage({
-  db, // Використовуємо існуюче з'єднання
-  file: (req, file) => ({
-    filename: `${file.fieldname}-${Date.now()}.pdf`,
-    bucketName: "resumes", // Колекція в MongoDB
-  }),
-});
+// // Налаштування GridFS Storage
+// const storage = new GridFsStorage({
+//   db, // Використовуємо існуюче з'єднання
+//   file: (req, file) => ({
+//     filename: `${file.fieldname}-${Date.now()}.pdf`,
+//     bucketName: "resumes", // Колекція в MongoDB
+//   }),
+// });
 
-const upload = multer({ storage });
+// const upload = multer({ storage });
 
 // 📌 Ендпоїнт для завантаження файлів
 router.post("/upload", (req, res) => {

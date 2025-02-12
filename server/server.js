@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import feedbackRoutes from "./routes/feedbackRoutes.js";
 import resumeRoutes from "./routes/resumeRoutes.js";
+import certificateRoutes from "./routes/certificateRoutes.js";
 
 // Завантаження змінних середовища
 dotenv.config();
@@ -37,6 +38,7 @@ connectDB();
 // Route
 app.use("/api", feedbackRoutes);
 app.use("/api/resume", resumeRoutes);
+app.use("/api/certificates", certificateRoutes);
 
 // Базовий маршрут
 app.get("/", (req, res) => {
