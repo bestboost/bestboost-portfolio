@@ -11,6 +11,6 @@ const upload = multer({ dest: "uploads/" }); // Зберігаємо тимча�
 
 router.post("/upload", upload.single("certificate"), uploadCertificate);
 router.get("/list", listCertificates);
-router.get("/download/:filename", downloadCertificate);
+router.get("/download/:id", downloadCertificate);
 
 export default router;

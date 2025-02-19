@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import PdfThumbnail from "./PdfThumbnail";
 import {
   CertificatesTitle,
   CertificatesContainer,
@@ -35,17 +36,21 @@ const Certificates = () => {
     <>
       <CertificatesTitle>Certificates</CertificatesTitle>
       <CertificatesContainer>
-        {certificates.map((cert) => (
+        {(certificates || []).map((cert) => (
           <CertificateItem key={cert._id}>
-            <CertificateImage
-              src={
-                cert.contentType.startsWith("image")
-                  ? `http://localhost:5000/api/certificates/download/${cert._id}`
-                  : "/pdf-placeholder.png"
-              }
-              alt="Сертифікат"
-              onClick={() => setSelectedCertificate(cert)}
-            />
+            {cert.contentType?.startsWith("image") ? (
+              <CertificateImage
+                src={`http://localhost:5000/api/certificates/download/${cert._id}`}
+                alt="Сертифікат"
+                onClick={() => setSelectedCertificate(cert)}
+              />
+            ) : (
+              <PdfThumbnail
+                url={`http://localhost:5000/api/certificates/download/${cert._id}`}
+                alt="Сертифікат"
+                onClick={() => setSelectedCertificate(cert)}
+              />
+            )}
             <CertificateTitle>{cert.filename}</CertificateTitle>
             <DownloadLink
               href={`http://localhost:5000/api/certificates/download/${cert._id}`}
@@ -63,7 +68,8 @@ const Certificates = () => {
             <CloseButton onClick={() => setSelectedCertificate(null)}>
               ✖
             </CloseButton>
-            {selectedCertificate.contentType.startsWith("image") ? (
+            {selectedCertificate &&
+            selectedCertificate.contentType?.startsWith("image/") ? (
               <img
                 src={`http://localhost:5000/api/certificates/download/${selectedCertificate._id}`}
                 alt="Сертифікат"
