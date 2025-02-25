@@ -75,7 +75,7 @@ export const downloadCertificate = async (req, res) => {
     }
 
     const filename = files[0].filename;
-    res.set("Content-Disposition", `inline; filename="${filename}"`);
+    res.set("Content-Disposition", `attachment; filename="${filename}"`);
     res.set("Content-Type", files[0].contentType);
 
     const downloadStream = gfs.openDownloadStream(objectId);
