@@ -7,7 +7,7 @@ import {
   CertificatesContainer,
   CertificateItem,
   CertificateTitle,
-  DownloadLink,
+  // DownloadLink,
   CertificateImage,
 } from "./Certificates.styled";
 
@@ -15,7 +15,7 @@ const Certificates = () => {
   const [certificates, setCertificates] = useState([]);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
 
-  const API_URL = process.env.REACT_API_URL;
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     fetchCertificates();
@@ -24,7 +24,7 @@ const Certificates = () => {
   const fetchCertificates = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/certificates/list"
+      `${API_URL}/api/certificates/list`
       );
       setCertificates(response.data);
     } catch (error) {
@@ -48,24 +48,25 @@ const Certificates = () => {
           <CertificateItem key={cert._id}>
             {cert.contentType?.startsWith("image") ? (
               <CertificateImage
-                src={`http://localhost:5000/api/certificates/download/${cert._id}`}
+                src={`${API_URL}/api/certificates/download/${cert._id}`}
                 alt="Сертифікат"
                 onClick={() => setSelectedCertificate(cert)}
               />
             ) : (
               <PdfThumbnail
-                url={`http://localhost:5000/api/certificates/download/${cert._id}`}
+                url={`${API_URL}/api/certificates/download/${cert._id}`}
                 alt="Сертифікат"
                 onClick={() => setSelectedCertificate(cert)}
+                loading="lazy" 
               />
             )}
             <CertificateTitle>{cert.filename}</CertificateTitle>
-            <DownloadLink
+            {/* <DownloadLink
               href={`http://localhost:5000/api/certificates/download/${cert._id}`}
               download
             >
               Download
-            </DownloadLink>
+            </DownloadLink> */}
           </CertificateItem>
         ))}
       </CertificatesContainer>
@@ -74,7 +75,7 @@ const Certificates = () => {
         selectedCertificate && (
           <ModalCertificates
             onClick={() => setSelectedCertificate(null)}
-            src={`http://localhost:5000/api/certificates/download/${selectedCertificate._id}`}
+            src={`${API_URL}/api/certificates/download/${selectedCertificate._id}`}
             isOpen={openModal}
             onClose={closeModal}
             modalUrlUrl={selectedCertificate}

@@ -53,8 +53,8 @@ export const listCertificates = async (req, res) => {
   }
 };
 
-// 📌 Отримання конкретного файлу
-export const downloadCertificate = async (req, res) => {
+// 📌 Отримання конкретного файлу для перегляду
+export const viewCertificate = async (req, res) => {
   try {
     const gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
       bucketName: "certificates",
@@ -68,14 +68,16 @@ export const downloadCertificate = async (req, res) => {
 
     const objectId = new mongoose.Types.ObjectId(id);
 
-    // Отримуємо інформацію про файл перед завантаженням
+    // Отримуємо інформацію про файл перед переглядом
     const files = await gfs.find({ _id: objectId }).toArray();
     if (!files.length) {
       return res.status(404).json({ error: "Файл не знайдено" });
     }
 
     const filename = files[0].filename;
-    res.set("Content-Disposition", `attachment; filename="${filename}"`);
+
+    // Встановлюємо заголовок для inline перегляду (без скачування)
+    res.set("Content-Disposition", `inline; filename="${filename}"`);
     res.set("Content-Type", files[0].contentType);
 
     const downloadStream = gfs.openDownloadStream(objectId);
@@ -84,6 +86,7 @@ export const downloadCertificate = async (req, res) => {
       res.status(500).json({ error: "Помилка сервера" });
     });
 
+    // Підключаємо потік до відповіді для перегляду
     downloadStream.pipe(res);
   } catch (error) {
     res.status(500).json({ error: "Помилка сервера" });
