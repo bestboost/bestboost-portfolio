@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PdfThumbnail from "./PdfThumbnail";
+import ModalCertificates from "./ModalCertificates";
 import {
   CertificatesTitle,
   CertificatesContainer,
@@ -8,9 +9,6 @@ import {
   CertificateTitle,
   DownloadLink,
   CertificateImage,
-  ModalOverlay,
-  ModalContent,
-  CloseButton,
 } from "./Certificates.styled";
 
 const Certificates = () => {
@@ -30,6 +28,14 @@ const Certificates = () => {
     } catch (error) {
       console.error("Помилка при отриманні сертифікатів:", error);
     }
+  };
+
+  const openModal = (modalUrl) => {
+    setSelectedCertificate(modalUrl);
+  };
+
+  const closeModal = () => {
+    setSelectedCertificate(null);
   };
 
   return (
@@ -62,29 +68,17 @@ const Certificates = () => {
         ))}
       </CertificatesContainer>
 
-      {selectedCertificate && (
-        <ModalOverlay onClick={() => setSelectedCertificate(null)}>
-          <ModalContent onClick={(e) => e.stopPropagation()}>
-            <CloseButton onClick={() => setSelectedCertificate(null)}>
-              ✖
-            </CloseButton>
-            {selectedCertificate &&
-            selectedCertificate.contentType?.startsWith("image/") ? (
-              <img
-                src={`http://localhost:5000/api/certificates/download/${selectedCertificate._id}`}
-                alt="Сертифікат"
-                style={{ width: "100%" }}
-              />
-            ) : (
-              <iframe
-                src={`http://localhost:5000/api/certificates/download/${selectedCertificate._id}`}
-                width="100%"
-                height="500px"
-              />
-            )}
-          </ModalContent>
-        </ModalOverlay>
-      )}
+      {
+        selectedCertificate && (
+          <ModalCertificates
+            onClick={() => setSelectedCertificate(null)}
+            src={`http://localhost:5000/api/certificates/download/${selectedCertificate._id}`}
+            isOpen={openModal}
+            onClose={closeModal}
+            modalUrlUrl={selectedCertificate}
+          />
+        )
+      }
     </>
   );
 };
