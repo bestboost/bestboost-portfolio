@@ -15,6 +15,8 @@ const Certificates = () => {
   const [certificates, setCertificates] = useState([]);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
 
+  const API_URL = process.env.REACT_API_URL;
+
   useEffect(() => {
     fetchCertificates();
   }, []);
