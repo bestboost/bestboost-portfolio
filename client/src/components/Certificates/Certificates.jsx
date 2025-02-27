@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PdfThumbnail from "./PdfThumbnail";
 import ModalCertificates from "./ModalCertificates";
+import CertificateList from "./ CertificatesList";
 import {
   CertificatesTitle,
-  CertificatesContainer,
-  CertificateItem,
-  CertificateTitle,
-  // DownloadLink,
-  CertificateImage,
+  // CertificatesContainer,
+  // CertificateItem,
+  // CertificateTitle,
+  // CertificateImage,
 } from "./Certificates.styled";
 
 const Certificates = () => {
@@ -43,7 +42,8 @@ const Certificates = () => {
   return (
     <>
       <CertificatesTitle>Certificates</CertificatesTitle>
-      <CertificatesContainer>
+      <CertificateList certificates={certificates}  onClick={setSelectedCertificate}/>
+      {/* <CertificatesContainer>
         {(certificates || []).map((cert) => (
           <CertificateItem key={cert._id}>
             {cert.contentType?.startsWith("image") ? (
@@ -61,15 +61,9 @@ const Certificates = () => {
               />
             )}
             <CertificateTitle>{cert.filename}</CertificateTitle>
-            {/* <DownloadLink
-              href={`http://localhost:5000/api/certificates/download/${cert._id}`}
-              download
-            >
-              Download
-            </DownloadLink> */}
           </CertificateItem>
         ))}
-      </CertificatesContainer>
+      </CertificatesContainer> */}
 
       {
         selectedCertificate && (
@@ -78,7 +72,7 @@ const Certificates = () => {
             src={`${API_URL}/api/certificates/download/${selectedCertificate._id}`}
             isOpen={openModal}
             onClose={closeModal}
-            modalUrlUrl={selectedCertificate}
+            modalUrl={selectedCertificate}
           />
         )
       }

@@ -33,19 +33,5 @@ export const CertificateImage = styled.img`
   border-radius: 5px;
 `;
 
-export const CertificateDescription = styled.p`
-  font-size: 1rem;
-  color: #666;
-`;
-
-export const DownloadLink = styled.a`
-  display: block;
-  margin-top: 0.5rem;
-  color: #007bff;
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-  }
-`;
 
 

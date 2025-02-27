@@ -56,10 +56,7 @@ export const listCertificates = async (req, res) => {
 // 📌 Отримання конкретного файлу для перегляду
 export const viewCertificate = async (req, res) => {
   try {
-    const gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
-      bucketName: "certificates",
-    });
-
+    const gfs = getGFS();
     const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
