@@ -4,10 +4,6 @@ import ModalCertificates from "./ModalCertificates";
 import CertificateList from "./ CertificatesList";
 import {
   CertificatesTitle,
-  // CertificatesContainer,
-  // CertificateItem,
-  // CertificateTitle,
-  // CertificateImage,
 } from "./Certificates.styled";
 
 const Certificates = () => {
@@ -43,28 +39,6 @@ const Certificates = () => {
     <>
       <CertificatesTitle>Certificates</CertificatesTitle>
       <CertificateList certificates={certificates}  onClick={setSelectedCertificate}/>
-      {/* <CertificatesContainer>
-        {(certificates || []).map((cert) => (
-          <CertificateItem key={cert._id}>
-            {cert.contentType?.startsWith("image") ? (
-              <CertificateImage
-                src={`${API_URL}/api/certificates/download/${cert._id}`}
-                alt="Сертифікат"
-                onClick={() => setSelectedCertificate(cert)}
-              />
-            ) : (
-              <PdfThumbnail
-                url={`${API_URL}/api/certificates/download/${cert._id}`}
-                alt="Сертифікат"
-                onClick={() => setSelectedCertificate(cert)}
-                loading="lazy" 
-              />
-            )}
-            <CertificateTitle>{cert.filename}</CertificateTitle>
-          </CertificateItem>
-        ))}
-      </CertificatesContainer> */}
-
       {
         selectedCertificate && (
           <ModalCertificates
