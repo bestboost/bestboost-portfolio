@@ -1,35 +1,42 @@
-import PdfThumbnail from "./PdfThumbnail";
-import {  CertificatesContainer,
     CertificateItem,
-    CertificateTitle,
-    CertificateImage,} from "./ CertificatesList.styled";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { CertificatesContainer, CertificateItem, CertificateTitle, CertificateImage } from "./ CertificatesList.styled";
 
-const CertificateList = ({certificates, setSelectedCertificate}) => {
-    const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 
-    return (
+const CertificateList = ({ setSelectedCertificate }) => {
+  const [certificates, setCertificates] = useState([]);
+
+  useEffect(() => {
+    fetchCertificates();
+  }, []);
+
+  const fetchCertificates = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/api/certificates/list`);
+      setCertificates(response.data); // Перевірте, чи є `imageUrl` у відповідях
+      console.log(response.data)
+    } catch (error) {
+      console.error("Помилка при отриманні сертифікатів:", error);
+    }
+  };
+
+  return (
     <CertificatesContainer>
-        {(certificates || []).map((cert) => (
-          <CertificateItem key={cert._id}>
-            {cert.contentType?.startsWith("image") ? (
-              <CertificateImage
-                src={`${API_URL}/api/certificates/download/${cert._id}`}
-                alt="Сертифікат"
-                onClick={() => setSelectedCertificate(cert)}
-              />
-            ) : (
-              <PdfThumbnail
-                url={`${API_URL}/api/certificates/download/${cert._id}`}
-                alt="Сертифікат"
-                onClick={() => setSelectedCertificate(cert)}
-                loading="lazy" 
-              />
-            )}
-            <CertificateTitle>{cert.filename}</CertificateTitle>
-          </CertificateItem>
-        ))}
-      </CertificatesContainer>
-    )
-}
+      {(certificates || []).map((cert) => (
+        <CertificateItem key={cert._id}>
+          <CertificateImage
+            src={cert.imageUrl} // Використовуємо URL зображення
+            alt="Сертифікат"
+            loading="lazy"
+            onClick={() => setSelectedCertificate(cert)}
+          />
+          <CertificateTitle>{cert.filename}</CertificateTitle>
+        </CertificateItem>
+      ))}
+    </CertificatesContainer>
+  );
+};
 
 export default CertificateList;

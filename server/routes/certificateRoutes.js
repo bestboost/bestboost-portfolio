@@ -1,16 +1,20 @@
 import express from "express";
+import multer from "multer";
 import {
   uploadCertificate,
+  uploadThumbnail, 
   listCertificates,
- viewCertificate,
+  viewCertificate, 
+  getThumbnail,
 } from "../controllers/certificateController.js";
-import multer from "multer";
 
 const router = express.Router();
-const upload = multer({ dest: "uploads/" }); // Зберігаємо тимчасово в папку `uploads`
+const upload = multer({ dest: "uploads/" }); // Тимчасове збереження файлів
 
 router.post("/upload", upload.single("certificate"), uploadCertificate);
+router.post("/upload-thumbnail", upload.single("thumbnail"), uploadThumbnail); 
 router.get("/list", listCertificates);
-router.get("/download/:id",viewCertificate);
+router.get("/list/thumbnail/:id", getThumbnail); 
+router.get("/download/:id", viewCertificate);
 
 export default router;

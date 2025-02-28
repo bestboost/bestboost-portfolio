@@ -17,7 +17,7 @@ const About = () => {
       <Title>About Me</Title>
       <BackgroundCard>
         <AboutContainer>
-          <Photo src={myPhoto} alt="Фото Дар'ї Гудзовськї" />
+          <Photo src={myPhoto} alt="Фото Дар'ї Гудзовськї" loading="lazy"/>
           <Description>
             Привіт! Мене звати Дар'я, і я — Frontend/Full-Stack розробниця, яка
             вірить у силу технологій змінювати світ на краще. Ця професія

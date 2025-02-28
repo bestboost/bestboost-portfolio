@@ -7,25 +7,24 @@ import {
 } from "./Certificates.styled";
 
 const Certificates = () => {
-  const [certificates, setCertificates] = useState([]);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
 
   const API_URL = process.env.REACT_APP_API_URL;
 
-  useEffect(() => {
-    fetchCertificates();
-  }, []);
+  // useEffect(() => {
+  //   fetchCertificates();
+  // }, []);
 
-  const fetchCertificates = async () => {
-    try {
-      const response = await axios.get(
-      `${API_URL}/api/certificates/list`
-      );
-      setCertificates(response.data);
-    } catch (error) {
-      console.error("Помилка при отриманні сертифікатів:", error);
-    }
-  };
+  // const fetchCertificates = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //     `${API_URL}/api/certificates/download/:id`
+  //     );
+  //     setSelectedCertificate(response.data);
+  //   } catch (error) {
+  //     console.error("Помилка при отриманні сертифікатів:", error);
+  //   }
+  // };
 
   const openModal = (modalUrl) => {
     setSelectedCertificate(modalUrl);
@@ -38,8 +37,8 @@ const Certificates = () => {
   return (
     <>
       <CertificatesTitle>Certificates</CertificatesTitle>
-      <CertificateList certificates={certificates}  onClick={setSelectedCertificate}/>
-      {
+      <CertificateList setSelectedCertificate={setSelectedCertificate}/>
+      {/* {
         selectedCertificate && (
           <ModalCertificates
             onClick={() => setSelectedCertificate(null)}
@@ -49,7 +48,7 @@ const Certificates = () => {
             modalUrl={selectedCertificate}
           />
         )
-      }
+      } */}
     </>
   );
 };

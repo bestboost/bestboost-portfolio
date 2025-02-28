@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import fs from "fs";
+import path from "path";
+import sharp from "sharp";
 
 const getGFS = () => {
   return new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
@@ -30,28 +32,104 @@ export const uploadCertificate = (req, res) => {
     );
 };
 
-// 📌 Отримання списку сертифікатів
+// 📌 Завантаження мініатюри
+export const uploadThumbnail = (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: "Файл не завантажено" });
+  }
+
+  const gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
+    bucketName: "thumbnails", // Окремий бакет для мініатюр
+  });
+  const tempPath = req.file.path;
+  const optimizedPath = path.join("uploads", `thumb_${req.file.filename}.jpeg`);
+
+  sharp(tempPath)
+    .resize(300) // Оптимальний розмір для списку
+    .jpeg({ quality: 70 }) // Стискаємо без значної втрати якості
+    .toFile(optimizedPath)
+    .then(() => {
+      const uploadStream = gfs.openUploadStream(req.file.originalname, {
+        contentType: "image/jpeg",
+      });
+
+      fs.createReadStream(optimizedPath)
+        .pipe(uploadStream)
+        .on("error", (err) => res.status(500).json({ error: "Помилка завантаження" }))
+        .on("finish", () => {
+          fs.unlinkSync(tempPath); // Видаляємо тимчасовий файл
+          fs.unlinkSync(optimizedPath); // Видаляємо оброблений файл
+          res.json({ id: uploadStream.id, filename: req.file.originalname });
+        });
+    })
+    .catch((err) => res.status(500).json({ error: "Помилка обробки зображення" }));
+};
+
+// 📌 Отримання списку сертифікатів та мініатюр
 export const listCertificates = async (req, res) => {
   try {
-    const gfs = getGFS();
+    const gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
+      bucketName: "thumbnails", // Окремий бакет для мініатюр
+    });
+
+    // Отримуємо всі сертифікати з GridFS (для зображень)
     const files = await gfs.find().toArray();
 
     if (!files || files.length === 0) {
       return res.status(404).json({ error: "Файли не знайдені" });
     }
 
-    // Кожен файл має свій contentType, тому ми просто віддаємо масив об'єктів
+    // Для кожного сертифіката ми додаємо URL для мініатюри
     const formattedFiles = files.map((file) => ({
       _id: file._id,
       filename: file.filename,
-      contentType: file.contentType, // Тут буде MIME-тип кожного файлу
+      imageUrl: `http://localhost:5000/api/certificates/list/thumbnail/${file._id}`, // Додаємо URL для мініатюри
     }));
 
-    res.json(formattedFiles);
+    res.json(formattedFiles); // Відправляємо відформатовану відповідь
   } catch (error) {
     res.status(500).json({ error: "Помилка при отриманні файлів" });
   }
 };
+
+// 📌 Отримання мініатюри сертифіката за ID
+export const getThumbnail = (req, res) => {
+  const fileId = req.params.id;
+  const gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
+    bucketName: "thumbnails", // Окремий бакет для мініатюр
+  });
+
+  // Завантажуємо мініатюру по ID
+  gfs.openDownloadStream(new mongoose.Types.ObjectId(fileId))
+    .pipe(res)
+    .on("error", () => res.status(404).json({ error: "Мініатюру не знайдено" }));
+};
+
+
+// // 📌 Отримання списку сертифікатів
+// export const listCertificates = async (req, res) => {
+//   try {
+//     const gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
+//       bucketName: "thumbnails", // Окремий бакет для мініатюр
+//     });
+//     const files = await gfs.find().toArray();
+
+//     if (!files || files.length === 0) {
+//       return res.status(404).json({ error: "Файли не знайдені" });
+//     }
+
+//     // Кожен файл має свій contentType, тому ми просто віддаємо масив об'єктів
+//     const formattedFiles = files.map((file) => ({
+//       _id: file._id,
+//       filename: file.filename,
+//       // contentType: file.contentType, // Тут буде MIME-тип кожного файлу
+//     }));
+
+//     res.json(formattedFiles);
+//   } catch (error) {
+//     res.status(500).json({ error: "Помилка при отриманні файлів" });
+//   }
+// };
 
 // 📌 Отримання конкретного файлу для перегляду
 export const viewCertificate = async (req, res) => {
