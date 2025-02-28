@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import ModalCertificates from "./ModalCertificates";
+import { useState, useEffect } from "react";
+// import axios from "axios";
+// import ModalCertificates from "./ModalCertificates";
 import CertificateList from "./ CertificatesList";
 import {
   CertificatesTitle,
