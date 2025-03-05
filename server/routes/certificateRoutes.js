@@ -3,7 +3,7 @@ import multer from "multer";
 import {
   uploadCertificate,
   uploadThumbnail, 
-  listCertificates,
+  listThumbnails,
   viewCertificate, 
   getThumbnail,
 } from "../controllers/certificateController.js";
@@ -13,8 +13,9 @@ const upload = multer({ dest: "uploads/" }); // Тимчасове збереж�
 
 router.post("/upload", upload.single("certificate"), uploadCertificate);
 router.post("/upload-thumbnail", upload.single("thumbnail"), uploadThumbnail); 
-router.get("/list", listCertificates);
-router.get("/list/thumbnail/:id", getThumbnail); 
+router.get("/list-thumbnails", listThumbnails); // Мініатюри
+// router.get("/list-originals", listOriginalCertificates); // Оригінали
+router.get("/thumbnail/:id", getThumbnail); 
 router.get("/download/:id", viewCertificate);
 
 export default router;

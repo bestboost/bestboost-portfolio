@@ -11,14 +11,14 @@ const API_URL = process.env.REACT_APP_API_URL;
 const Certificates = () => {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
 
-  useEffect(() => {
-    fetchCertificates();
-  }, []);
+  // useEffect(() => {
+  //   fetchCertificates();
+  // }, []);
 
-  const fetchCertificates = async () => {
+  const openModal = async() => {
     try {
       const response = await axios.get(
-      `${API_URL}/api/certificates/download/:id`
+      `${API_URL}/api/certificates/download/${selectedCertificate._id}`
       );
       setSelectedCertificate(response.data);
     } catch (error) {
@@ -26,16 +26,12 @@ const Certificates = () => {
     }
   };
 
-  const openModal = (modalUrl) => {
-    setSelectedCertificate(modalUrl);
-  };
-
   const closeModal = () => {
     setSelectedCertificate(null);
   };
 
   return (
-    <CertificatesContainer>
+    <CertificatesContainer onClick={() => openModal()}>
       <CertificatesTitle>Certificates</CertificatesTitle>
       <CertificateList setSelectedCertificate={setSelectedCertificate}/>
       {
@@ -43,7 +39,6 @@ const Certificates = () => {
           <ModalCertificates
             onClick={() => setSelectedCertificate(null)}
             src={`${API_URL}/api/certificates/download/${selectedCertificate._id}`}
-            isOpen={openModal}
             onClose={closeModal}
             modalUrl={selectedCertificate}
           />

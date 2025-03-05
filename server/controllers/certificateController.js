@@ -65,30 +65,27 @@ export const uploadThumbnail = (req, res) => {
     .catch((err) => res.status(500).json({ error: "Помилка обробки зображення" }));
 };
 
-// 📌 Отримання списку сертифікатів та мініатюр
-export const listCertificates = async (req, res) => {
+export const listThumbnails = async (req, res) => {
   try {
     const gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
-      bucketName: "thumbnails", // Окремий бакет для мініатюр
+      bucketName: "thumbnails", // Бакет для мініатюр
     });
 
-    // Отримуємо всі сертифікати з GridFS (для зображень)
     const files = await gfs.find().toArray();
 
     if (!files || files.length === 0) {
-      return res.status(404).json({ error: "Файли не знайдені" });
+      return res.status(404).json({ error: "Мініатюри не знайдені" });
     }
 
-    // Для кожного сертифіката ми додаємо URL для мініатюри
     const formattedFiles = files.map((file) => ({
       _id: file._id,
       filename: file.filename,
-      imageUrl: `http://localhost:5000/api/certificates/list/thumbnail/${file._id}`, // Додаємо URL для мініатюри
+      imageUrl: `http://localhost:5000/api/certificates/thumbnail/${file._id}`, 
     }));
 
-    res.json(formattedFiles); // Відправляємо відформатовану відповідь
+    res.json(formattedFiles);
   } catch (error) {
-    res.status(500).json({ error: "Помилка при отриманні файлів" });
+    res.status(500).json({ error: "Помилка при отриманні мініатюр" });
   }
 };
 

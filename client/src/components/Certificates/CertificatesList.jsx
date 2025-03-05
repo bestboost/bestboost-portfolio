@@ -13,7 +13,7 @@ const CertificateList = () => {
 
   const fetchCertificates = async () => {
     try {
-      const response = await axios.get(`${API_URL}/api/certificates/list`);
+      const response = await axios.get(`${API_URL}/api/certificates/list-thumbnails`);
       setCertificates(response.data); // Перевірте, чи є `imageUrl` у відповідях
       console.log(response.data)
     } catch (error) {
