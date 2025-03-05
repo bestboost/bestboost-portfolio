@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { CertificatesContainer, CertificateItem, CertificateTitle, CertificateImage } from "./ CertificatesList.styled";
+import {CertificatesContainer, CertificateItem, CertificateTitle, CertificateImage } from "./CertificatesList.styled";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-const CertificateList = ({ setSelectedCertificate }) => {
+const CertificateList = () => {
   const [certificates, setCertificates] = useState([]);
 
   useEffect(() => {
@@ -29,7 +29,6 @@ const CertificateList = ({ setSelectedCertificate }) => {
             src={cert.imageUrl} // Використовуємо URL зображення
             alt="Сертифікат"
             loading="lazy"
-            onClick={() => setSelectedCertificate(cert)}
           />
           <CertificateTitle>{cert.filename}</CertificateTitle>
         </CertificateItem>

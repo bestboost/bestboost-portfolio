@@ -1,30 +1,30 @@
 import { useState, useEffect } from "react";
-// import axios from "axios";
-// import ModalCertificates from "./ModalCertificates";
-import CertificateList from "./ CertificatesList";
-import {
+import axios from "axios";
+import ModalCertificates from "./ModalCertificates";
+import CertificateList from "./CertificatesList";
+import {CertificatesContainer,
   CertificatesTitle,
 } from "./Certificates.styled";
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 const Certificates = () => {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
 
-  const API_URL = process.env.REACT_APP_API_URL;
+  useEffect(() => {
+    fetchCertificates();
+  }, []);
 
-  // useEffect(() => {
-  //   fetchCertificates();
-  // }, []);
-
-  // const fetchCertificates = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //     `${API_URL}/api/certificates/download/:id`
-  //     );
-  //     setSelectedCertificate(response.data);
-  //   } catch (error) {
-  //     console.error("Помилка при отриманні сертифікатів:", error);
-  //   }
-  // };
+  const fetchCertificates = async () => {
+    try {
+      const response = await axios.get(
+      `${API_URL}/api/certificates/download/:id`
+      );
+      setSelectedCertificate(response.data);
+    } catch (error) {
+      console.error("Помилка при отриманні сертифікатів:", error);
+    }
+  };
 
   const openModal = (modalUrl) => {
     setSelectedCertificate(modalUrl);
@@ -35,10 +35,10 @@ const Certificates = () => {
   };
 
   return (
-    <>
+    <CertificatesContainer>
       <CertificatesTitle>Certificates</CertificatesTitle>
       <CertificateList setSelectedCertificate={setSelectedCertificate}/>
-      {/* {
+      {
         selectedCertificate && (
           <ModalCertificates
             onClick={() => setSelectedCertificate(null)}
@@ -48,8 +48,8 @@ const Certificates = () => {
             modalUrl={selectedCertificate}
           />
         )
-      } */}
-    </>
+      }
+    </CertificatesContainer>
   );
 };
 
