@@ -128,6 +128,30 @@ export const getThumbnail = (req, res) => {
 //   }
 // };
 
+export const listOriginalCertificates = async (req, res) => {
+  try {
+    const gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
+      bucketName: "certificates", // Окремий бакет для сертифікатів
+    });
+
+    const files = await gfs.find().toArray();
+
+    if (!files || files.length === 0) {
+      return res.status(404).json({ error: "Сертифікати не знайдені" });
+    }
+
+    const formattedFiles = files.map((file) => ({
+      _id: file._id,
+      filename: file.filename,
+      fileUrl: `http://localhost:5000/api/certificates/download/${file._id}`, 
+    }));
+
+    res.json(formattedFiles);
+  } catch (error) {
+    res.status(500).json({ error: "Помилка при отриманні сертифікатів" });
+  }
+};
+
 // 📌 Отримання конкретного файлу для перегляду
 export const viewCertificate = async (req, res) => {
   try {

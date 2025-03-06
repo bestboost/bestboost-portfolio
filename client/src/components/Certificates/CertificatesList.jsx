@@ -4,8 +4,8 @@ import {CertificatesContainer, CertificateItem, CertificateTitle, CertificateIma
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-const CertificateList = () => {
-  const [certificates, setCertificates] = useState([]);
+const CertificateList = ({onSelect}) => {
+  const [thumbnails, setThumbnails] = useState([]);
 
   useEffect(() => {
     fetchCertificates();
@@ -14,7 +14,7 @@ const CertificateList = () => {
   const fetchCertificates = async () => {
     try {
       const response = await axios.get(`${API_URL}/api/certificates/list-thumbnails`);
-      setCertificates(response.data); // Перевірте, чи є `imageUrl` у відповідях
+      setThumbnails(response.data); // Перевірте, чи є `imageUrl` у відповідях
       console.log(response.data)
     } catch (error) {
       console.error("Помилка при отриманні сертифікатів:", error);
@@ -23,14 +23,14 @@ const CertificateList = () => {
 
   return (
     <CertificatesContainer>
-      {(certificates || []).map((cert) => (
-        <CertificateItem key={cert._id}>
+      {(thumbnails || []).map((thumb) => (
+        <CertificateItem key={thumb._id} onClick={() => onSelect(thumb.filename)}>
           <CertificateImage
-            src={cert.imageUrl} // Використовуємо URL зображення
+            src={thumb.imageUrl} // Використовуємо URL зображення
             alt="Сертифікат"
             loading="lazy"
           />
-          <CertificateTitle>{cert.filename}</CertificateTitle>
+          <CertificateTitle>{thumb.filename}</CertificateTitle>
         </CertificateItem>
       ))}
     </CertificatesContainer>

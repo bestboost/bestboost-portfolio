@@ -5,9 +5,7 @@ import {
   CloseButton,
 } from "./ModalCertificates.styled";
 
-const ModalCertificates = ({ onClick, src, isOpen, onClose }) => {
-  const [selectedCertificate, setSelectedCertificate] = useState(null);
-
+const ModalCertificates = ({ onClick, src, isOpen, onClose, selectedCertificate }) => {
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
