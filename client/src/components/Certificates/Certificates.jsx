@@ -18,7 +18,6 @@ const Certificates = () => {
     try {
       const response = await axios.get(`${API_URL}/api/certificates/list-originals`);
       setCertificates(response.data);
-      console.log("Список сертифікатів:", response.data);
     } catch (error) {
       console.error("Помилка при отриманні сертифікатів:", error);
     }

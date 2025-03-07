@@ -4,6 +4,7 @@ import {
   uploadCertificate,
   uploadThumbnail, 
   listThumbnails,
+  listOriginalCertificates,
   viewCertificate, 
   getThumbnail,
 } from "../controllers/certificateController.js";

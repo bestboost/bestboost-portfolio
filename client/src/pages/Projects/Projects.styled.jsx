@@ -60,6 +60,7 @@ export const ProjectImg = styled.img`
 `;
 
 export const Description = styled.p`
+  padding-bottom: 10px;
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.main};
   font-size: 1.1rem;
@@ -69,10 +70,14 @@ export const Description = styled.p`
 `;
 
 export const ProjectLink = styled.a`
+ padding-bottom: 10px;
   color: ${({ theme }) => theme.colors.link};
+  font-weight: 600;
   text-decoration: none;
 
   &:hover {
     text-decoration: underline;
+     color: ${({ theme }) => theme.colors.primary};
+    text-shadow: 0px 0px 8px ${({ theme }) => theme.colors.secondary};
   }
 `;

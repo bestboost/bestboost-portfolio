@@ -103,31 +103,7 @@ export const getThumbnail = (req, res) => {
 };
 
 
-// // 📌 Отримання списку сертифікатів
-// export const listCertificates = async (req, res) => {
-//   try {
-//     const gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
-//       bucketName: "thumbnails", // Окремий бакет для мініатюр
-//     });
-//     const files = await gfs.find().toArray();
-
-//     if (!files || files.length === 0) {
-//       return res.status(404).json({ error: "Файли не знайдені" });
-//     }
-
-//     // Кожен файл має свій contentType, тому ми просто віддаємо масив об'єктів
-//     const formattedFiles = files.map((file) => ({
-//       _id: file._id,
-//       filename: file.filename,
-//       // contentType: file.contentType, // Тут буде MIME-тип кожного файлу
-//     }));
-
-//     res.json(formattedFiles);
-//   } catch (error) {
-//     res.status(500).json({ error: "Помилка при отриманні файлів" });
-//   }
-// };
-
+// 📌 Отримання списку сертифікатів
 export const listOriginalCertificates = async (req, res) => {
   try {
     const gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
