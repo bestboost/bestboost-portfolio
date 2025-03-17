@@ -4,7 +4,6 @@ import Project from "../models/projectSchema.js";
 export const getAllProjects = async (req, res) => {
   try {
     const projects = await Project.find().sort({ createdAt: -1 }); // Сортуємо за датою створення (останні — першими)
-    res.json(projects);;
     res.json(projects);
   } catch (error) {
     res.status(500).json({ error: "Помилка при отриманні проектів" });
