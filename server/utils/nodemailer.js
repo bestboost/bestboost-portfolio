@@ -12,6 +12,11 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+if (!email || !emailPassword) {
+  console.log("Помилка: електронна адреса або пароль не задані в конфігурації.");
+  process.exit(1); // Завершуємо програму, якщо не задані налаштування
+}
+
 const sendMail = (mailOptions) => {
   return new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (error, info) => {
@@ -24,33 +29,20 @@ const sendMail = (mailOptions) => {
   });
 };
 
-const sendEmail = async (newFeedback) => {
+const sendEmail = async ({ to, subject, text }) => {
   try {
     const mailOptions = {
-      to: email,
-      subject: "Новий запит з форми зворотного зв’язку",
-      text: `
-      Нова відповідь:
-      Ім'я: ${newFeedback.name}
-      Email: ${newFeedback.email}
-      Повідомлення: ${newFeedback.message}
-    `,
+      from: email, // Вказуємо відправника
+      to: to,      // Отримувач
+      subject: subject,
+      text: text,
     };
 
-    const userMail = {
-      to: newFeedback.email, // email користувача
-      subject: "Ми отримали ваш запит!",
-      text: `Дякуємо, ${newFeedback.name}, за те, що зв’язалися з нами! Ми отримали ваш запит і відповімо найближчим часом."`,
-    };
-
-    // Відправка листів
+    // Відправка листа
     await sendMail(mailOptions);
-    console.log("Лист надіслано адміністратору");
-
-    await sendMail(userMail);
-    console.log("Лист надіслано користувачу");
+    console.log(`Лист надіслано на ${to}`);
   } catch (error) {
-    console.log("Помилка при відправленні:", error);
+    console.log("Помилка при відправленні:", error.message);
   }
 };
 

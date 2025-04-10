@@ -1,6 +1,5 @@
 import React from "react";
 import Certificates from "../../components/Certificates/Certificates";
-// import text from "../../locales/texts";
 import myPhoto from "../../assets/images/myPhoto.jpg";
 import {
   AboutSection,
@@ -9,6 +8,7 @@ import {
   AboutContainer,
   Description,
   Photo,
+  PhotoPlaceholder,
 } from "./About.styled";
 
 const About = () => {
@@ -17,7 +17,11 @@ const About = () => {
       <Title>About Me</Title>
       <BackgroundCard>
         <AboutContainer>
-          <Photo src={myPhoto} alt="Фото Дар'ї Гудзовськї" loading="lazy"/>
+          {myPhoto ? (
+            <Photo src={myPhoto} alt="Фото Дар'ї Гудзовськї" loading="lazy" />
+          ) : (
+            <PhotoPlaceholder>Фото скоро буде</PhotoPlaceholder>
+          )}
           <Description>
             Привіт! Мене звати Дар'я, і я — Frontend/Full-Stack розробниця, яка
             вірить у силу технологій змінювати світ на краще. Ця професія

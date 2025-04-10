@@ -26,3 +26,16 @@ export const CertificateImage = styled.img`
   cursor: pointer;
   border-radius: 5px;
 `;
+
+export const PlaceholderItem = styled.div`
+  width: 150px;
+  height: 200px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 14px;
+  font-style: italic;
+`;

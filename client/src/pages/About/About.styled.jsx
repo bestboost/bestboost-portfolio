@@ -37,6 +37,21 @@ export const Photo = styled.img`
   box-shadow: ${({ theme }) => theme.shadows.default};
 `;
 
+export const PhotoPlaceholder = styled.div`
+  float: left;
+  width: 130px;
+  height: 180px;
+  background: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 14px;
+  margin: 0 20px 20px 0;
+  border-radius: 8px;
+  box-shadow: ${({ theme }) => theme.shadows.default};
+`;
+
 export const Description = styled.p`
   margin-bottom: ${({ theme }) => theme.spacing(4)};
   color: ${({ theme }) => theme.colors.text};
