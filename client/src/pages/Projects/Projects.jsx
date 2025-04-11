@@ -52,11 +52,12 @@ useEffect(() => {
                 </ProjectLink>
               )}
               <Description>{project.description}</Description>
+              <Description>Роль: {project.role}</Description>
               <Description>
                 Tech Stack: {project.techStack.join(", ")}
               </Description>
               <ProjectLink
-                href={project.githubLink}
+                href={project.githubRepo}
                 target="_blank"
                 rel="noopener noreferrer"
               >

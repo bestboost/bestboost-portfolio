@@ -5,6 +5,7 @@ const projectSchema = new mongoose.Schema(
     title: { type: String }, // Назва (береться з GitHub, але можна перезаписати)
     liveLink: { type: String }, // Лінк на демо-версію
     description: { type: String }, // Опис
+    role: {type: String},
     techStack: { type: [String] }, // Масив технологій
     image: { type: String }, // Кастомне зображення (якщо треба)
     githubRepo: { type: String, required: true, unique: true }, // Шлях до репозиторію
