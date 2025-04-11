@@ -1,13 +1,16 @@
-import React from "react";
+import { Suspense, lazy } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import Home from "../../pages/Home/Home";
 import Header from "../Header/Header";
-import About from "../../pages/About/About";
-import Projects from "../../pages/Projects/Projects";
-import Resume from "../../pages/Resume/Resume";
-import Contacts from "../../pages/Contacts/Contacts";
 import Footer from "../Footer/Footer";
 import { Container } from "./App.styled";
+import Loader from "../Loader/Loader";
+
+// Лейзі-імпорт сторінок
+const Home = lazy(() => import("../../pages/Home/Home"));
+const About = lazy(() => import("../../pages/About/About"));
+const Projects = lazy(() => import("../../pages/Projects/Projects"));
+const Resume = lazy(() => import("../../pages/Resume/Resume"));
+const Contacts = lazy(() => import("../../pages/Contacts/Contacts"));
 
 const App = () => {
   const location = useLocation();
@@ -15,15 +18,20 @@ const App = () => {
   return (
     <Container>
       {location.pathname !== "/" && <Header />}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/resume" element={<Resume />} />
-        <Route path="/contacts" element={<Contacts />} />
-      </Routes>
+      
+      <Suspense fallback={<Loader/>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/resume" element={<Resume />} />
+          <Route path="/contacts" element={<Contacts />} />
+        </Routes>
+      </Suspense>
+
       {location.pathname !== "/" && <Footer />}
     </Container>
   );
 };
+
 export default App;
