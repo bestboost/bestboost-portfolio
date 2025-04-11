@@ -13,7 +13,9 @@ export const Title = styled.h2`
   margin-bottom: ${({ theme }) => theme.spacing(2)};
 `;
 
-export const Contact = styled.p`
+export const Contact = styled.div`
+  display: flex;
+  align-items: center;
   padding: ${({ theme }) => theme.spacing(2)};
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.main};
@@ -22,15 +24,14 @@ export const Contact = styled.p`
   text-align: start;
   margin: 0;
   max-width: 600px;
+    &:hover {
+    text-decoration: underline;
+    color: ${({ theme }) => theme.colors.primary};
+    text-shadow: 0px 0px 8px ${({ theme }) => theme.colors.secondary};
+  }
 `;
 
 export const ContactLink = styled.a`
   color: ${({ theme }) => theme.colors.link};
   text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-    color: ${({ theme }) => theme.colors.primary};
-    text-shadow: 0px 0px 8px ${({ theme }) => theme.colors.secondary};
-  }
 `;

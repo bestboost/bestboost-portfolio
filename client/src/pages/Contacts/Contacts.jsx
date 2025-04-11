@@ -13,30 +13,30 @@ const Contacts = () => {
     <ContactsSection id="contacts">
       <Title>Contacts</Title>
       <Contact>
+      <FaGithub />_GitHub
         <ContactLink
           href="https://github.com/bestboost"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaGithub /> GitHub
         </ContactLink>
       </Contact>
       <Contact>
+      <FaLinkedin />_LinkedIn
         <ContactLink
           href="https://linkedin.com/in/darya-hudzovska/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaLinkedin /> LinkedIn
         </ContactLink>
       </Contact>
       <Contact>
+      <FaTelegram />_Telegram
         <ContactLink
           href="https://t.me/DaryaHudzovska"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaTelegram /> Telegram
         </ContactLink>
       </Contact>
       <FeedbackForm />

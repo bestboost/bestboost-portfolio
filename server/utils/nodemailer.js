@@ -13,7 +13,6 @@ const transporter = nodemailer.createTransport({
 });
 
 if (!email || !emailPassword) {
-  console.log("Помилка: електронна адреса або пароль не задані в конфігурації.");
   process.exit(1); // Завершуємо програму, якщо не задані налаштування
 }
 
@@ -40,7 +39,6 @@ const sendEmail = async ({ to, subject, text }) => {
 
     // Відправка листа
     await sendMail(mailOptions);
-    console.log(`Лист надіслано на ${to}`);
   } catch (error) {
     console.log("Помилка при відправленні:", error.message);
   }

@@ -4,6 +4,8 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { Container } from "./App.styled";
 import Loader from "../Loader/Loader";
+import  Toast  from "../ToastContainer/ToastContainer";
+
 
 // Лейзі-імпорт сторінок
 const Home = lazy(() => import("../../pages/Home/Home"));
@@ -28,6 +30,7 @@ const App = () => {
           <Route path="/contacts" element={<Contacts />} />
         </Routes>
       </Suspense>
+      <Toast />
 
       {location.pathname !== "/" && <Footer />}
     </Container>

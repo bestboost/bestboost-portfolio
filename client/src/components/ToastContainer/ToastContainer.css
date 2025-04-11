@@ -1,0 +1,22 @@
+/* custom-toast.css */
+.Toastify__toast--success {
+    background: #2A9D8F;
+    color: #fff;
+  }
+  
+  .Toastify__toast--error {
+    background: #E63946;
+    color: #fff;
+  }
+  
+  .Toastify__toast--info {
+    background: #264653;
+    color: #fff;
+  }
+  
+  .Toastify__toast--warning {
+    background: #FFC107;
+    color: #2F2F2F;
+    font-weight: 500;
+  }
+  

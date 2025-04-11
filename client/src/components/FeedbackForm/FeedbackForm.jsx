@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import "../ToastContainer/ToastContainer.css";
 import Button from "../Button/Button";
 import {
   FormSection,
@@ -25,6 +27,7 @@ const FeedbackForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
     try {
       const response = await fetch("http://localhost:5000/api/feedback", {
         method: "POST",
@@ -33,25 +36,22 @@ const FeedbackForm = () => {
         },
         body: JSON.stringify(formData),
       });
-
-      if (response.ok) {
-        alert(
-          // "Feedback sent successfully!"
-          "Ваше повідомлення успішно надіслано!"
-        );
+  
+      const data = await response.json();
+  
+      if (response.status === 201) {
+        toast.success(data.message || "Ваше повідомлення успішно надіслано!");
         setFormData({ name: "", email: "", message: "" });
+      } else if (response.status === 400) {
+        toast.warn(data.message || "Будь ласка, перевірте правильність введених даних.");
+      } else if (response.status === 500) {
+        toast.error(data.message || "Сервер тимчасово недоступний. Спробуйте пізніше.");
       } else {
-        alert(
-          // "Failed to send feedback. Please try again."
-          "Щось пішло не так. Спробуйте пізніше."
-        );
+        toast.info(data.message || "Щось пішло не так. Спробуйте ще раз.");
       }
     } catch (error) {
-      console.error("Error:", error);
-      alert(
-        // "An error occurred. Please try again."
-        "Помилка мережі!"
-      );
+      console.error("Помилка мережі:", error);
+      toast.error("Не вдалося надіслати. Перевірте інтернет.");
     }
   };
 
