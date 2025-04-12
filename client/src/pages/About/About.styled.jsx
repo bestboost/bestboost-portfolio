@@ -31,6 +31,7 @@ export const AboutContainer = styled.div`
 export const PhotoContainer = styled.div`
   float: left;
   width: 33%;
+  min-height: 300px;
   position: relative;
   margin: 0 20px 20px 0;
   border-radius: 8px;

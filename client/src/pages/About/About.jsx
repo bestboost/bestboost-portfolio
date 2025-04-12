@@ -15,10 +15,9 @@ import {
 const About = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  const handleImageLoad = () => {
-    console.log("Image loaded!");
-    setIsLoading(false);
-  };
+  // const handleImageLoad = () => {
+  //   setIsLoading(false);
+  // };
 
   return (
     <AboutSection id="about">
@@ -28,7 +27,7 @@ const About = () => {
         <PhotoContainer>   
           {isLoading && <PhotoPlaceholder> Фото не доступне</PhotoPlaceholder>}
         <Photo src={myPhoto} alt="Фото Дар'ї Гудзовськї" loading="lazy" 
-        onLoad={(e) => {handleImageLoad(); e.target.style.opacity = 1}}
+        onLoad={(e) => {setIsLoading(false); e.target.style.opacity = 1}}
         style={{ opacity: 0, transition: "opacity 0.5s ease-in-out" }}
         /> 
         </PhotoContainer> 
