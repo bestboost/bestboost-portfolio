@@ -23,6 +23,7 @@ export const Title = styled.h2`
 `;
 
 export const SecondaryTitle = styled.h3`
+font-size: 2rem;
   color: ${({ theme }) => theme.colors.secondary};
   font-family: ${({ theme }) => theme.fonts.heading};
   margin-bottom: ${({ theme }) => theme.spacing(2)};
@@ -74,6 +75,7 @@ export const ProjectLink = styled.a`
  padding-bottom: 10px;
   color: ${({ theme }) => theme.colors.link};
   font-weight: 600;
+  font-size: 1.2rem;
   text-decoration: none;
 
   &:hover {
