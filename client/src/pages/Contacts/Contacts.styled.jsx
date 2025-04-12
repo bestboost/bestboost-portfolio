@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ContactsSection = styled.main`
+export const ContactsSection = styled.div`
   flex: 1;
   padding: 32px 160px;
   background-color: ${({ theme }) => theme.colors.background};

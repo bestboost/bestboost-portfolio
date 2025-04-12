@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ResumeSection = styled.main`
+export const ResumeSection = styled.div`
   flex: 1;
   padding: 32px 160px;
   background-color: ${({ theme }) => theme.colors.background};

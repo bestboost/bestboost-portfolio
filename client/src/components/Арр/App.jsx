@@ -2,7 +2,7 @@ import { Suspense, lazy } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import { Container } from "./App.styled";
+import { Container, MainContent } from "./App.styled";
 import Loader from "../Loader/Loader";
 import  Toast  from "../ToastContainer/ToastContainer";
 
@@ -18,10 +18,10 @@ const App = () => {
   const location = useLocation();
 
   return (
-    <Container>
-      {location.pathname !== "/" && <Header />}
-      
+    <Container>      
       <Suspense fallback={<Loader/>}>
+      {location.pathname !== "/" && <Header />}
+      <MainContent>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -29,10 +29,10 @@ const App = () => {
           <Route path="/resume" element={<Resume />} />
           <Route path="/contacts" element={<Contacts />} />
         </Routes>
+        </MainContent>
+        {location.pathname !== "/" && <Footer />}
       </Suspense>
       <Toast />
-
-      {location.pathname !== "/" && <Footer />}
     </Container>
   );
 };

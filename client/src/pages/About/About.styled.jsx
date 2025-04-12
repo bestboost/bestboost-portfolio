@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const AboutSection = styled.main`
+export const AboutSection = styled.div`
   flex: 1;
   padding: 32px 160px;
   background-color: ${({ theme }) => theme.colors.background};
@@ -28,29 +28,43 @@ export const AboutContainer = styled.div`
   position: relative;
 `;
 
-export const Photo = styled.img`
+export const PhotoContainer = styled.div`
   float: left;
   width: 33%;
-  height: auto;
+  position: relative;
   margin: 0 20px 20px 0;
   border-radius: 8px;
-  box-shadow: ${({ theme }) => theme.shadows.default};
+  overflow: hidden;
+  display: flex; /* Додаємо flex-контейнер */
+  align-items: center; /* Вирівнювання по вертикалі */
+  justify-content: center; /* Вирівнювання по горизонталі */
+   box-shadow: ${({ theme }) => theme.shadows.default};
 `;
 
-export const PhotoPlaceholder = styled.div`
-  float: left;
-  width: 130px;
-  height: 180px;
-  background: rgba(0, 0, 0, 0.05);
-  display: flex;
+export const PhotoPlaceholder = styled.div`  
+position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(200, 200, 200, 0.5);
+  color: #aaa;
+  font-size: 16px;
+  text-align: center;
+    display: flex;
   align-items: center;
   justify-content: center;
-  color: #aaa;
-  font-size: 14px;
-  margin: 0 20px 20px 0;
-  border-radius: 8px;
-  box-shadow: ${({ theme }) => theme.shadows.default};
+  z-index: 1;
 `;
+
+export const Photo = styled.img` 
+  max-width: 100%; /* Зображення не виходить за межі контейнера */
+  max-height: 100%;
+  object-fit: cover; 
+  border-radius: 8px;
+  position: relative;
+  z-index: 0;
+  `;
 
 export const Description = styled.p`
   margin-bottom: ${({ theme }) => theme.spacing(4)};

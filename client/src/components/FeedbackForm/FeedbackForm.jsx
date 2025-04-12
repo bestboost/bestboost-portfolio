@@ -10,6 +10,8 @@ import {
   TextArea,
 } from "./FeedbackForm.styled";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const FeedbackForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -29,7 +31,7 @@ const FeedbackForm = () => {
     e.preventDefault();
   
     try {
-      const response = await fetch("http://localhost:5000/api/feedback", {
+      const response = await fetch(`${API_URL}/api/feedback`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

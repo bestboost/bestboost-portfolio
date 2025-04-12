@@ -1,27 +1,37 @@
-import React from "react";
+import { useState } from 'react';
 import Certificates from "../../components/Certificates/Certificates";
-import myPhoto from "../../assets/images/myPhoto.jpg";
+import myPhoto from "../../assets/images/myPhoto.webp";
 import {
   AboutSection,
   Title,
   BackgroundCard,
   AboutContainer,
   Description,
+  PhotoContainer,
   Photo,
   PhotoPlaceholder,
 } from "./About.styled";
 
 const About = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleImageLoad = () => {
+    console.log("Image loaded!");
+    setIsLoading(false);
+  };
+
   return (
     <AboutSection id="about">
       <Title>About Me</Title>
       <BackgroundCard>
-        <AboutContainer>
-          {myPhoto ? (
-            <Photo src={myPhoto} alt="Фото Дар'ї Гудзовськї" loading="lazy" />
-          ) : (
-            <PhotoPlaceholder>Фото скоро буде</PhotoPlaceholder>
-          )}
+        <AboutContainer> 
+        <PhotoContainer>   
+          {isLoading && <PhotoPlaceholder> Фото не доступне</PhotoPlaceholder>}
+        <Photo src={myPhoto} alt="Фото Дар'ї Гудзовськї" loading="lazy" 
+        onLoad={(e) => {handleImageLoad(); e.target.style.opacity = 1}}
+        style={{ opacity: 0, transition: "opacity 0.5s ease-in-out" }}
+        /> 
+        </PhotoContainer> 
           <Description>
             Привіт! Мене звати Дар'я, і я — Frontend/Full-Stack розробниця, яка
             вірить у силу технологій змінювати світ на краще. Ця професія
