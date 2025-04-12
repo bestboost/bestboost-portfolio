@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const ProjectsSection = styled.div`
   flex: 1;
+  min-height: 80vh;
   padding: 32px 160px;
   background-color: ${({ theme }) => theme.colors.background};
   text-align: center;

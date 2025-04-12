@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 // import Testimonials from "../../components/Testimonials/Testimonials.jsx";
+import Loader from "../../components/Loader/Loader";
 import {
   ProjectsSection,
   ProjectsContainer,
@@ -16,8 +17,9 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 const Projects = () => {
   const [projectsData, setProjectsData] = useState([])
+  const [loading, setLoading] = useState(true);
 
-useEffect(() => { 
+  useEffect(() => { 
   getAllProjects();
 }, []);
 
@@ -27,6 +29,8 @@ useEffect(() => {
       setProjectsData(response.data)
     } catch(error){
       console.error("Помилка при отриманні проектів:", error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -34,7 +38,8 @@ useEffect(() => {
     <>
       <ProjectsSection>
         <Title>Projects</Title>
-        <ProjectsContainer>
+       { loading ? ( <Loader/> ) :
+       ( <ProjectsContainer>
           {(projectsData || []).map((project) => (
             <ProjectCard key={project._id}>
               <ProjectImg
@@ -66,6 +71,7 @@ useEffect(() => {
             </ProjectCard>
           ))}
         </ProjectsContainer>
+      )}
       </ProjectsSection>
       {/* <Testimonials /> */}
     </>
