@@ -1,10 +1,10 @@
 import React from "react";
 import { SpinnerWrapper, Spinner } from "./Loader.styled";
 
-const Loader = () => {
+const Loader = ({ width, height }) => {
   return (
     <SpinnerWrapper>
-      <Spinner />
+      <Spinner width={width} height={height} />
     </SpinnerWrapper>
   );
 };

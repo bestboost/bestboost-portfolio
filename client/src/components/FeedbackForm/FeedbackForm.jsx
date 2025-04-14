@@ -18,6 +18,7 @@ const FeedbackForm = () => {
     email: "",
     message: "",
   });
+  const [isLoading, setIsLoading] = useState(false); // Стан для спінера
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +30,9 @@ const FeedbackForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
+    setIsLoading(true); // Увімкнути спінер
+
     try {
       const response = await fetch(`${API_URL}/api/feedback`, {
         method: "POST",
@@ -38,22 +41,28 @@ const FeedbackForm = () => {
         },
         body: JSON.stringify(formData),
       });
-  
+
       const data = await response.json();
-  
+
       if (response.status === 201) {
         toast.success(data.message || "Ваше повідомлення успішно надіслано!");
         setFormData({ name: "", email: "", message: "" });
       } else if (response.status === 400) {
-        toast.warn(data.message || "Будь ласка, перевірте правильність введених даних.");
+        toast.warn(
+          data.message || "Будь ласка, перевірте правильність введених даних."
+        );
       } else if (response.status === 500) {
-        toast.error(data.message || "Сервер тимчасово недоступний. Спробуйте пізніше.");
+        toast.error(
+          data.message || "Сервер тимчасово недоступний. Спробуйте пізніше."
+        );
       } else {
         toast.info(data.message || "Щось пішло не так. Спробуйте ще раз.");
       }
     } catch (error) {
       console.error("Помилка мережі:", error);
       toast.error("Не вдалося надіслати. Перевірте інтернет.");
+    } finally {
+      setIsLoading(false); // Вимкнути спінер
     }
   };
 
@@ -85,7 +94,9 @@ const FeedbackForm = () => {
           onChange={handleChange}
           required
         />
-        <Button type="submit">Send Message</Button>
+        <Button type="submit" disabled={isLoading} isLoading={isLoading}>
+          Send Message
+        </Button>
       </Form>
     </FormSection>
   );
