@@ -1,10 +1,11 @@
 import React from "react";
-import { LogoStyle } from "./Logo.styled";
+import { StyledLink, LogoStyle } from "./Logo.styled";
 
 const Logo = () => {
   return (
-    <LogoStyle>BestBoost</LogoStyle>
-    // <svg></svg>
+    <StyledLink to="/about">
+      <LogoStyle>BestBoost</LogoStyle>
+    </StyledLink>
   );
 };
 

@@ -16,8 +16,11 @@ const theme = {
   },
   spacing: (factor) => `${8 * factor}px`, // Відступи (8px базові)
   shadows: {
-    default: "0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.06)",
-    hover: "0px 6px 12px rgba(0, 0, 0, 0.15), 0px 2px 4px rgba(0, 0, 0, 0.08)",
+    default: "0px 6px 12px rgba(0, 0, 0, 0.2), 0px 2px 4px rgba(0, 0, 0, 0.1)", // Збільшено розмиття та непрозорість
+    hover: "0px 8px 24px rgba(0, 0, 0, 0.3), 0px 4px 12px rgba(0, 0, 0, 0.2)", // Більш помітна тінь для hover
+  },
+  transitions: {
+    hover: "background-color 0.3s ease, box-shadow 0.3s ease", // Додаємо стилі переходу
   },
   breakpoints: {
     mobile: "576px",

@@ -1,6 +1,11 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export const LogoStyle = styled.p`
+export const StyledLink = styled(Link)`
+  text-decoration: none; /* Прибираємо підкреслювання */
+`;
+
+export const LogoStyle = styled.div`
   margin: 0;
   padding: 0 16px;
   font-family: ${({ theme }) => theme.fonts.main};

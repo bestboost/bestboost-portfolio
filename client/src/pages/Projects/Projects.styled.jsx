@@ -23,7 +23,7 @@ export const Title = styled.h2`
 `;
 
 export const SecondaryTitle = styled.h3`
-font-size: 2rem;
+  font-size: 1.5rem;
   color: ${({ theme }) => theme.colors.secondary};
   font-family: ${({ theme }) => theme.fonts.heading};
   margin-bottom: ${({ theme }) => theme.spacing(2)};
@@ -49,6 +49,7 @@ export const ProjectCard = styled.div`
   border-radius: 8px;
   text-align: center;
   box-shadow: ${({ theme }) => theme.shadows.default};
+  transition: ${({ theme }) => theme.transitions.hover};
 
   &:hover {
     box-shadow: ${({ theme }) => theme.shadows.hover};
@@ -72,15 +73,16 @@ export const Description = styled.p`
 `;
 
 export const ProjectLink = styled.a`
- padding-bottom: 10px;
+  padding-bottom: 10px;
   color: ${({ theme }) => theme.colors.link};
   font-weight: 600;
   font-size: 1.2rem;
   text-decoration: none;
+  cursor: pointer;
 
   &:hover {
     text-decoration: underline;
-     color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
     text-shadow: 0px 0px 8px ${({ theme }) => theme.colors.secondary};
   }
 `;
