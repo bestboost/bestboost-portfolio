@@ -44,8 +44,10 @@ export const ProjectsContainer = styled.div`
 `;
 
 export const ProjectCard = styled.div`
+ overflow: hidden; /* Гарантує, що вміст не виходить за межі */
+  position: relative
   background-color: ${({ theme }) => theme.colors.secondBackground};
-  padding: 20px;
+  padding-top: 20px;
   border-radius: 8px;
   text-align: center;
   box-shadow: ${({ theme }) => theme.shadows.default};
@@ -56,23 +58,46 @@ export const ProjectCard = styled.div`
   }
 `;
 
+export const ImgBox = styled.div`
+  width: 100%;
+  height: auto;
+  padding: 20px;
+`;
+
 export const ProjectImg = styled.img`
   max-width: 100%;
   border-radius: 8px;
-  margin-bottom: 10px;
+`;
+
+export const DescriptionWrapper = styled.div`
+  position: relative;
+  max-height: 4rem; /* Відображає лише три рядки тексту */
+  overflow: hidden;
+  transition: max-height 0.3s ease, background-color 0.3s ease;
+  background-color: rgba(64, 224, 208, 0.2); /* Прозорий бірюзовий фон */
+
+  &:hover {
+    max-height: none; /* Показує повний текст при наведенні */
+    cursor: pointer;
+    background-color: rgba(
+      64,
+      224,
+      208,
+      0.5
+    ); /* Робить фон більш насиченим при наведенні */
+  }
 `;
 
 export const Description = styled.p`
-  padding-bottom: 10px;
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.main};
-  font-size: 1.1rem;
-  line-height: 1.5;
-  margin: 0 auto;
-  max-width: 600px;
+  font-size: 1rem; /* Зменшено розмір шрифту */
+  line-height: 1.6; /* Зменшено відстань між рядками */
+  margin: 5px 0; /* Зменшено відступи */
 `;
 
 export const ProjectLink = styled.a`
+  display: block;
   padding-bottom: 10px;
   color: ${({ theme }) => theme.colors.link};
   font-weight: 600;
