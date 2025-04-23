@@ -8,7 +8,9 @@ export const ResumeSection = styled.div`
 `;
 
 export const BackgroundCard = styled.div`
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: ${({ theme }) => theme.colors.secondBackground};
   padding: 40px 20px;
   border-radius: 8px;
@@ -23,9 +25,13 @@ export const Title = styled.h2`
 `;
 
 export const SecondaryTitle = styled.h3`
-  color: ${({ theme }) => theme.colors.secondary};
   font-family: ${({ theme }) => theme.fonts.heading};
-  margin-bottom: ${({ theme }) => theme.spacing(2)};
+  color: ${({ theme }) => theme.colors.secondary};
+  display: inline-block;
+  margin-bottom: ${({ theme }) => theme.spacing(4)};
+  span {
+    display: inline-block;
+  }
 `;
 
 export const Description = styled.p`
@@ -38,12 +44,3 @@ export const Description = styled.p`
   padding: ${({ theme }) =>
     `${theme.spacing(2)} ${theme.spacing(2)} 0 ${theme.spacing(2)}`};
 `;
-
-// export const ProjectLink = styled.a`
-//   color: ${({ theme }) => theme.colors.link};
-//   text-decoration: none;
-
-//   &:hover {
-//     text-decoration: underline;
-//   }
-// `;

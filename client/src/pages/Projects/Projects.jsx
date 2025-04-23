@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
 import Modal from "../../components/Modal/ModalProjects.jsx";
 // import Testimonials from "../../components/Testimonials/Testimonials.jsx";
 import Loader from "../../components/Loader/Loader";
@@ -46,10 +47,18 @@ const Projects = () => {
     setModalData(null);
   };
 
+  // Анімаційні варіанти для заголовка
+  const titleVariants = {
+    hidden: { opacity: 0, y: -50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  };
+
   return (
     <>
       <ProjectsSection>
-        <Title>Projects</Title>
+        <motion.div initial="hidden" animate="visible" variants={titleVariants}>
+          <Title>Projects</Title>
+        </motion.div>
         {loading ? (
           <Loader />
         ) : (

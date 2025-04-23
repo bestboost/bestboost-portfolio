@@ -20,9 +20,14 @@ export const CertificateItem = styled.div`
   }
 `;
 
-export const CertificateTitle = styled.h3`
+export const CertificateTitle = styled.p`
+  display: block;
+  padding-bottom: 10px;
+  color: ${({ theme }) => theme.colors.link};
+  font-weight: 600;
   font-size: 1.2rem;
-  margin: 0.5rem 0;
+  text-decoration: none;
+  cursor: pointer;
 `;
 
 export const CertificateImage = styled.img`

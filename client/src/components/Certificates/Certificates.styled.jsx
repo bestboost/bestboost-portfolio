@@ -5,13 +5,9 @@ export const CertificatesContainer = styled.div`
   justify-content: center;
 `;
 
-export const CertificatesTitle = styled.h2`
-  font-size: 2rem;
-  margin-bottom: 1rem;
+export const CertificatesTitle = styled.h3`
+  font-size: 1.5rem;
+  color: ${({ theme }) => theme.colors.secondary};
+  font-family: ${({ theme }) => theme.fonts.heading};
+  margin-bottom: ${({ theme }) => theme.spacing(2)};
 `;
-
-
-
-
-
-

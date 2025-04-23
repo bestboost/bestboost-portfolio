@@ -8,10 +8,11 @@ export const FormSection = styled.section`
   background-color: #f4f4f4;
 `;
 
-export const FormTitle = styled.h2`
-  padding: 10px;
-  font-size: 1.5em;
-  color: #2f2f2f;
+export const FormTitle = styled.h3`
+  font-size: 1.5rem;
+  color: ${({ theme }) => theme.colors.secondary};
+  font-family: ${({ theme }) => theme.fonts.heading};
+  margin-bottom: ${({ theme }) => theme.spacing(2)};
 `;
 
 export const Form = styled.form`
