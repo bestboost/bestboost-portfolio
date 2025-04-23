@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import ModalCertificates from "./ModalCertificates";
+import ModalCertificates from "../Modal//ModalCertificates";
 import CertificateList from "./CertificatesList";
 import { CertificatesTitle } from "./Certificates.styled";
 
@@ -16,7 +16,9 @@ const Certificates = () => {
 
   const fetchOriginalCertificates = async () => {
     try {
-      const response = await axios.get(`${API_URL}/api/certificates/list-originals`);
+      const response = await axios.get(
+        `${API_URL}/api/certificates/list-originals`
+      );
       setCertificates(response.data);
     } catch (error) {
       console.error("Помилка при отриманні сертифікатів:", error);
@@ -25,9 +27,15 @@ const Certificates = () => {
 
   const openModal = (filename) => {
     // Функція для очищення назви файлу (видаляє розширення)
-  const cleanFilename = (filename) => filename.replace(/\.[^/.]+$/, "").trim().toLowerCase();
+    const cleanFilename = (filename) =>
+      filename
+        .replace(/\.[^/.]+$/, "")
+        .trim()
+        .toLowerCase();
 
-    const certificate = certificates.find(cert => cleanFilename(cert.filename) === cleanFilename(filename));
+    const certificate = certificates.find(
+      (cert) => cleanFilename(cert.filename) === cleanFilename(filename)
+    );
     if (!certificate) {
       console.error("Помилка: не знайдено оригінал сертифіката для:", filename);
       return;
@@ -43,9 +51,7 @@ const Certificates = () => {
   return (
     <>
       <CertificatesTitle>Certificates</CertificatesTitle>
-      <CertificateList 
-      onSelect={openModal}
-      />
+      <CertificateList onSelect={openModal} />
       {selectedCertificate && (
         <ModalCertificates
           isOpen={!!selectedCertificate}

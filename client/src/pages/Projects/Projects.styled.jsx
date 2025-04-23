@@ -71,13 +71,13 @@ export const ProjectImg = styled.img`
 
 export const DescriptionWrapper = styled.div`
   position: relative;
-  max-height: 4rem; /* Відображає лише три рядки тексту */
+  max-height: 3.5rem; /* Відображає лише три рядки тексту */
   overflow: hidden;
   transition: max-height 0.3s ease, background-color 0.3s ease;
-  background-color: rgba(64, 224, 208, 0.2); /* Прозорий бірюзовий фон */
+  background-color: rgba(64, 224, 208, 0.1); /* Прозорий бірюзовий фон */
 
   &:hover {
-    max-height: none; /* Показує повний текст при наведенні */
+    // max-height: none; /* Показує повний текст при наведенні */
     cursor: pointer;
     background-color: rgba(
       64,

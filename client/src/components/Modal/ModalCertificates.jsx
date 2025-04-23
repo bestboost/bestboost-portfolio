@@ -5,7 +5,13 @@ import {
   CloseButton,
 } from "./ModalCertificates.styled";
 
-const ModalCertificates = ({ onClick, src, isOpen, onClose, selectedCertificate }) => {
+const ModalCertificates = ({
+  onClick,
+  src,
+  isOpen,
+  onClose,
+  selectedCertificate,
+}) => {
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
@@ -27,8 +33,8 @@ const ModalCertificates = ({ onClick, src, isOpen, onClose, selectedCertificate 
   return (
     <>
       <ModalOverlay onClick={onClick}>
+        <CloseButton onClick={onClick}>&times;</CloseButton>
         <ModalContent onClick={(e) => e.stopPropagation()}>
-          <CloseButton onClick={onClick}>✖</CloseButton>
           {selectedCertificate &&
           selectedCertificate.contentType?.startsWith("image/") ? (
             <img src={src} alt="Сертифікат" style={{ width: "100%" }} />

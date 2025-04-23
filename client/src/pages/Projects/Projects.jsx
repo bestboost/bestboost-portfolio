@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Modal from "../../components/Modal/ModalProjects.jsx";
 // import Testimonials from "../../components/Testimonials/Testimonials.jsx";
 import Loader from "../../components/Loader/Loader";
 import {
@@ -20,11 +21,8 @@ const API_URL = process.env.REACT_APP_API_URL;
 const Projects = () => {
   const [projectsData, setProjectsData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [expanded, setExpanded] = useState({});
+  const [modalData, setModalData] = useState(null);
 
-  const toggleExpand = (id) => {
-    setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
   useEffect(() => {
     getAllProjects();
   }, []);
@@ -38,6 +36,14 @@ const Projects = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const openModal = (project) => {
+    setModalData(project);
+  };
+
+  const closeModal = () => {
+    setModalData(null);
   };
 
   return (
@@ -73,12 +79,7 @@ const Projects = () => {
                 >
                   GitHub
                 </ProjectLink>
-                <DescriptionWrapper
-                  style={{
-                    maxHeight: expanded[project._id] ? "none" : "5.4rem",
-                  }}
-                  onClick={() => toggleExpand(project._id)}
-                >
+                <DescriptionWrapper onClick={() => openModal(project)}>
                   <Description>{project.description}</Description>
                   <Description>Роль: {project.role}</Description>
                   <Description>
@@ -91,6 +92,13 @@ const Projects = () => {
         )}
       </ProjectsSection>
       {/* <Testimonials /> */}
+      {modalData && (
+        <Modal
+          onClose={closeModal}
+          isOpen={!!modalData}
+          modalData={modalData}
+        ></Modal>
+      )}
     </>
   );
 };
