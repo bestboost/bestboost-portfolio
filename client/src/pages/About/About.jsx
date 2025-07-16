@@ -23,8 +23,8 @@ const About = () => {
   };
 
   const textVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 1 } },
+    hidden: { opacity: 0},
+    visible: { opacity: 1, transition: { duration: 1.5 } },
   };
 
   return (
@@ -41,7 +41,6 @@ const About = () => {
             <Photo
               src={myPhoto}
               alt="Фото Дар'ї Гудзовськї"
-              loading="lazy"
               onLoad={(e) => {
                 setIsLoading(false);
                 e.target.style.opacity = 1;

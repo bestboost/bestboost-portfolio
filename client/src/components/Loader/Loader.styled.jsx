@@ -17,8 +17,8 @@ export const SpinnerWrapper = styled.div`
 `;
 
 export const Spinner = styled.div`
-  border: 6px solid #f3f3f3; /* Light grey */
-  border-top: 4px solid #ff6f61; /* Accent color */
+  border: 4px solid #a9a9a9;
+  border-top: 8px solid #ff6f61; 
   border-radius: 50%;
   width: ${({ width }) => width || "50px"};
   height: ${({ height }) => height || "50px"};
